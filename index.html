@@ -1,785 +1,777 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lummi Island Mutual Aid (LIMA)</title>
-  <meta name="description" content="Lummi Island Mutual Aid (LIMA) - Fostering community, mutual aid, pantry support, and gift-giving on Lummi Island, WA.">
-  
-  <!-- Google Fonts & Lucide Icons -->
+  <meta name="description" content="Fostering cooperation and strengthening our island spirit through food sharing, community pantry support, and mutual aid on Lummi Island.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            forest: {
-              50: '#f2f7f4',
-              100: '#e1ede6',
-              200: '#c5dcd0',
-              300: '#9cc3b1',
-              600: '#39785c',
-              700: '#2d604b',
-              800: '#264e3e',
-              900: '#1b382c',
-            },
-            sand: {
-              50: '#faf8f5',
-              100: '#f5f0e8',
-              200: '#ece3d4',
-              300: '#dfd2bc',
-              800: '#5a5042',
-              900: '#383229',
-            },
-            warmgold: {
-              400: '#e5ad35',
-              500: '#d19722',
-            }
-          },
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            serif: ['"Playfair Display"', 'serif'],
-          }
-        }
-      }
-    }
-  </script>
-
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
   <style>
-    /* Subtle noise/texture overlay for organic feel */
-    .hero-pattern {
-      background-color: #1b382c;
-      background-image: radial-gradient(#2d604b 0.75px, transparent 0.75px);
-      background-size: 24px 24px;
+    :root {
+      --primary: #2b533e;        /* Deep cedar/forest green */
+      --primary-light: #3e7358;
+      --accent: #d97746;         /* Warm terracotta/apricot */
+      --accent-hover: #be6132;
+      --bg-cream: #faf8f5;       /* Warm linen backdrop */
+      --card-bg: #ffffff;
+      --text-main: #232724;
+      --text-muted: #59615a;
+      --border-soft: #e5e9e4;
+      --badge-bg: #eaf1ed;
+      --badge-text: #244634;
+      --shadow: 0 8px 24px rgba(43, 83, 62, 0.07);
+      --radius: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-cream);
+      color: var(--text-main);
+      line-height: 1.65;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Top Utility Bar */
+    .top-bar {
+      background: var(--primary);
+      color: #ffffff;
+      text-align: center;
+      padding: 10px 16px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .top-bar strong {
+      color: #f7d58d;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Navigation */
+    header.site-header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-soft);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .nav-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+    }
+
+    .logo-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--primary);
+    }
+
+    .logo-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .logo-text p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    nav.nav-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    nav.nav-links a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    nav.nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .btn-nav {
+      background: var(--primary);
+      color: #fff !important;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+
+    .btn-nav:hover {
+      background: var(--primary-light) !important;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 48px 0 32px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.85rem;
+      line-height: 1.15;
+      color: var(--primary);
+      margin-bottom: 18px;
+    }
+
+    .hero-content p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .honor-callout {
+      background: #fdf5ef;
+      border-left: 4px solid var(--accent);
+      padding: 16px 20px;
+      border-radius: 0 10px 10px 0;
+      margin-bottom: 28px;
+      font-size: 0.95rem;
+      color: #63331b;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      color: var(--primary);
+      border: 1.5px solid var(--border-soft);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--primary);
+      background: var(--badge-bg);
+    }
+
+    /* Image Wrapper Styles */
+    .image-frame {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background: #e7ece8;
+      position: relative;
+    }
+
+    .image-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-image-frame {
+      height: 380px;
+    }
+
+    /* Section Styles */
+    section {
+      padding: 56px 0;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.1rem;
+      color: var(--primary);
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 0 auto 40px;
+      font-size: 1.05rem;
+    }
+
+    /* Pantry Showcase Section */
+    .pantry-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-soft);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+    }
+
+    .pantry-img-container {
+      height: 100%;
+      min-height: 360px;
+    }
+
+    .pantry-img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .pantry-details {
+      padding: 36px 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .meta-badges {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 20px;
+    }
+
+    .pantry-details h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+
+    .info-list {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+
+    .info-list li {
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .info-list li strong {
+      color: var(--primary);
+      min-width: 90px;
+      display: inline-block;
+    }
+
+    /* Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 28px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 32px;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.45rem;
+      color: var(--primary);
+      margin-bottom: 14px;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+
+    /* Custom Tables */
+    .table-container {
+      overflow-x: auto;
+      margin: 24px 0;
+      border-radius: 10px;
+      border: 1px solid var(--border-soft);
+      background: #ffffff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+
+    th, td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    th {
+      background: #f4f6f4;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Two-Column Feature */
+    .split-feature {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: center;
+      margin-top: 40px;
+    }
+
+    .split-img-frame {
+      height: 320px;
+    }
+
+    /* Resource Box Grid */
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 20px;
+    }
+
+    .resource-box {
+      background: #ffffff;
+      border: 1px solid var(--border-soft);
+      border-radius: 10px;
+      padding: 20px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .resource-box:hover {
+      transform: translateY(-2px);
+      border-color: var(--primary-light);
+    }
+
+    .resource-box h4 {
+      color: var(--primary);
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    .resource-box p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .resource-contact {
+      font-weight: 600;
+      color: var(--text-main);
+      font-size: 0.88rem;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--primary);
+      color: #ffffff;
+      padding: 60px 0 32px;
+      margin-top: 60px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      margin-bottom: 16px;
+      color: #f7d58d;
+    }
+
+    .footer-col p {
+      font-size: 0.92rem;
+      color: #d1ded6;
+      line-height: 1.6;
+    }
+
+    .footer-col a {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding-top: 24px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #b0c4b8;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 820px) {
+      .hero-grid, .pantry-card, .split-feature, .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .nav-links {
+        display: none; /* Can be toggled with a lightweight menu button if desired */
+      }
+      .hero-content h2 {
+        font-size: 2.2rem;
+      }
+      .hero-image-frame {
+        height: 260px;
+      }
+      .pantry-img-container {
+        height: 240px;
+        min-height: auto;
+      }
     }
   </style>
 </head>
-<body class="bg-sand-50 text-sand-900 font-sans antialiased selection:bg-forest-200 selection:text-forest-900">
+<body>
 
   <!-- Top Announcement Bar -->
-  <div class="bg-forest-900 text-forest-100 px-4 py-2 text-xs md:text-sm text-center font-medium flex items-center justify-center gap-2">
-    <i data-lucide="heart" class="w-4 h-4 text-warmgold-400 fill-warmgold-400"></i>
-    <span>Community Pantry open daily 7:00 AM – 8:30 PM at 2141 Granger Way</span>
-  </div>
+  <aside class="top-bar" aria-label="Announcement">
+    Community Pantry open daily: <strong>7:00 AM – 8:30 PM</strong> at 2141 Granger Way
+  </aside>
 
-  <!-- Navigation -->
-  <header class="sticky top-0 z-40 bg-sand-50/90 backdrop-blur-md border-b border-sand-200 transition duration-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-20">
-        
-        <!-- Logo / Title -->
-        <a href="#" class="flex items-center gap-3 group">
-          <div class="w-10 h-10 rounded-xl bg-forest-700 text-sand-50 flex items-center justify-center font-serif text-xl font-bold shadow-sm group-hover:bg-forest-800 transition">
-            L
-          </div>
-          <div>
-            <span class="font-serif text-lg md:text-xl font-bold tracking-tight text-forest-900 block leading-tight">Lummi Island</span>
-            <span class="text-xs uppercase tracking-widest text-forest-600 font-semibold">Mutual Aid</span>
-          </div>
-        </a>
-
-        <!-- Desktop Navigation Links -->
-        <nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-sand-800">
-          <a href="#about" class="hover:text-forest-700 transition">About</a>
-          <a href="#pantry" class="hover:text-forest-700 transition">Community Pantry</a>
-          <a href="#how-it-works" class="hover:text-forest-700 transition">How It Works</a>
-          <a href="#donate" class="hover:text-forest-700 transition">Offer Aid & Funds</a>
-          <a href="#request" class="hover:text-forest-700 transition">Request Aid</a>
-          <a href="#resources" class="hover:text-forest-700 transition">Island Resources</a>
-        </nav>
-
-        <!-- Header CTA Buttons -->
-        <div class="hidden sm:flex items-center gap-3">
-          <a href="#request" class="px-4 py-2 rounded-xl text-xs md:text-sm font-semibold border border-forest-600 text-forest-700 hover:bg-forest-50 transition">
-            Request Help
-          </a>
-          <a href="#donate" class="px-4 py-2 rounded-xl text-xs md:text-sm font-semibold bg-forest-700 text-white shadow-sm hover:bg-forest-800 transition flex items-center gap-1.5">
-            <i data-lucide="gift" class="w-4 h-4"></i>
-            Give Support
-          </a>
+  <!-- Site Navigation -->
+  <header class="site-header">
+    <div class="container nav-wrapper">
+      <a href="#" class="logo-group">
+        <div class="logo-text">
+          <h1>Lummi Island Mutual Aid</h1>
+          <p>LIMA Community Resource</p>
         </div>
-
-        <!-- Mobile Menu Button -->
-        <button id="menu-btn" aria-label="Toggle menu" class="lg:hidden p-2 rounded-lg text-sand-800 hover:bg-sand-200 focus:outline-none">
-          <i data-lucide="menu" class="w-6 h-6"></i>
-        </button>
-      </div>
-    </div>
-
-    <!-- Mobile Dropdown -->
-    <div id="mobile-menu" class="hidden lg:hidden border-b border-sand-200 bg-sand-50 px-4 pt-3 pb-6 space-y-3">
-      <a href="#about" class="block py-2 text-sand-800 font-medium hover:text-forest-700 mobile-link">About</a>
-      <a href="#pantry" class="block py-2 text-sand-800 font-medium hover:text-forest-700 mobile-link">Community Pantry</a>
-      <a href="#how-it-works" class="block py-2 text-sand-800 font-medium hover:text-forest-700 mobile-link">How It Works</a>
-      <a href="#donate" class="block py-2 text-sand-800 font-medium hover:text-forest-700 mobile-link">Offer Aid & Funds</a>
-      <a href="#request" class="block py-2 text-sand-800 font-medium hover:text-forest-700 mobile-link">Request Aid</a>
-      <a href="#resources" class="block py-2 text-sand-800 font-medium hover:text-forest-700 mobile-link">Island Resources</a>
-      <div class="pt-2 flex flex-col gap-2">
-        <a href="#request" class="text-center py-2.5 rounded-lg border border-forest-600 text-forest-700 font-semibold mobile-link">Request Help</a>
-        <a href="#donate" class="text-center py-2.5 rounded-lg bg-forest-700 text-white font-semibold mobile-link">Give Support</a>
-      </div>
+      </a>
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <a href="#pantry">The Pantry</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#donations">Ways to Give</a>
+        <a href="#resources">Island Resources</a>
+        <a href="mailto:lummiislandmutualaid@gmail.com" class="btn-nav">Contact Us</a>
+      </nav>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="relative hero-pattern text-white pt-20 pb-28 md:py-32 overflow-hidden">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-forest-800/80 border border-forest-600/50 text-xs md:text-sm font-medium text-forest-200 mb-6">
-        <span class="w-2 h-2 rounded-full bg-warmgold-400"></span>
-        Community-Driven • Confidential • Neighbor-to-Neighbor
-      </div>
-      <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white leading-tight md:leading-tight">
-        Join our community in <br class="hidden sm:inline"><span class="italic text-sand-200 font-normal">making a difference.</span>
-      </h1>
-      <p class="mt-6 text-lg sm:text-xl text-forest-100/90 max-w-2xl mx-auto font-light leading-relaxed">
-        Lummi Island Mutual Aid (LIMA) fosters cooperation, dignity, and island solidarity. Everyone’s contribution—big or small—helps keep our Lummi community resilient.
-      </p>
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <h2>Join Our Community in Making a Difference</h2>
+          <p>LIMA is here to foster cooperation and strengthen our island spirit. Everyone's contribution—big or small—helps keep our Lummi community supported and resilient.</p>
+          
+          <div class="honor-callout">
+            <strong>The Honor System:</strong> We ask that neighbors keep the spirit of community in mind and heart, and please only take what you need so we can spread the love.
+          </div>
 
-      <div class="mt-10 flex flex-wrap justify-center gap-4">
-        <a href="#donate" class="px-6 py-3.5 rounded-xl bg-warmgold-500 hover:bg-warmgold-400 text-forest-900 font-semibold shadow-lg hover:shadow-xl transition transform hover:-translate-y-0.5 flex items-center gap-2">
-          <i data-lucide="hand-heart" class="w-5 h-5"></i>
-          Offer Aid or Donate
-        </a>
-        <a href="#request" class="px-6 py-3.5 rounded-xl bg-forest-800/90 hover:bg-forest-700 border border-forest-600 text-white font-semibold transition flex items-center gap-2">
-          <i data-lucide="clipboard-list" class="w-5 h-5"></i>
-          Request Groceries or Support
-        </a>
-      </div>
-
-      <!-- Honor System Notice Pill -->
-      <div class="mt-12 max-w-xl mx-auto p-4 rounded-2xl bg-forest-900/60 border border-forest-700/60 backdrop-blur-sm text-xs sm:text-sm text-forest-200 text-center">
-        <strong>The Honor System:</strong> We ask that everyone keeps the spirit of mutual care in mind—take only what you need so we can spread the love across our island.
-      </div>
-    </div>
-  </section>
-
-  <!-- About Section with Image Placeholder -->
-  <section id="about" class="py-20 bg-sand-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        
-        <!-- Left: Image Box -->
-        <div class="lg:col-span-5 order-2 lg:order-1">
-          <div class="relative rounded-3xl overflow-hidden shadow-xl bg-forest-900 aspect-[4/3] group border-4 border-white">
-            <!-- Place your image inside images/pantry.jpg or similar -->
-            <img 
-              src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=1200&q=80" 
-              alt="Community Pantry and Sharing" 
-              class="w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-90"
-              onerror="this.src='https://placehold.co/800x600/2d604b/ffffff?text=Add+Photo:+images/about.jpg';"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-forest-900/80 via-transparent to-transparent flex items-end p-6">
-              <span class="text-xs uppercase tracking-widest text-forest-100 font-semibold bg-forest-900/60 px-3 py-1 rounded-full backdrop-blur-sm">
-                Lummi Island Spirit
-              </span>
-            </div>
+          <div class="hero-actions">
+            <a href="mailto:lummiislandmutualaid@gmail.com?subject=Offer%20Food%20or%20Services" class="btn btn-primary">Offer Support</a>
+            <a href="mailto:lummiislandmutualaid@gmail.com?subject=Request%20for%20Assistance" class="btn btn-secondary">Request Assistance</a>
           </div>
         </div>
 
-        <!-- Right: Text Content -->
-        <div class="lg:col-span-7 order-1 lg:order-2">
-          <span class="text-xs uppercase tracking-widest text-forest-600 font-bold block mb-2">Who We Are</span>
-          <h2 class="font-serif text-3xl sm:text-4xl font-bold text-forest-900 leading-snug">
-            Neighbors Helping Neighbors in an Economy of Care
-          </h2>
-          <div class="mt-6 space-y-4 text-sand-800 text-base sm:text-lg leading-relaxed">
-            <p>
-              Lummi Island Mutual Aid is an informal, grassroots network dedicated to matching direct requests for aid with local donors. We are an open channel of care—sharing groceries, prepared meals, emergency support, and essential supplies.
+        <!-- ========================================================
+             IMAGE SLOT 1: HERO / COMMUNITY BANNER
+             Replace 'images/hero.webp' with your exported image file.
+             ======================================================== -->
+        <div class="image-frame hero-image-frame">
+          <img src="images/love.webp" 
+               alt="child with love art" 
+               >
+        </div>
+      </div>
+    </section>
+
+    <!-- The Community Pantry Section -->
+    <section id="pantry">
+      <div class="container">
+        <div class="pantry-card">
+          <!-- ========================================================
+               IMAGE SLOT 2: PANTRY INTERIOR OR BUILDING
+               Replace 'images/pantry.webp' with your pantry photo.
+               ======================================================== -->
+          <div class="pantry-img-container">
+            <img src="images/pantry.webp" 
+                 alt="Inside the LIMA Community Pantry shelves with shelf-stable food">
+          </div>
+
+          <div class="pantry-details">
+            <div class="meta-badges">
+              <span class="badge">Open Daily</span>
+              <span class="badge">Walk-In Access</span>
+            </div>
+            <h3>The LIMA Community Pantry</h3>
+            <ul class="info-list">
+              <li><strong>Location:</strong> 2141 Granger Way, Lummi Island, WA 98262</li>
+              <li><strong>Hours:</strong> Monday – Sunday, 7:00 AM – 8:30 PM</li>
+              <li><strong>Parking:</strong> On-site in designated areas</li>
+              <li><strong>Items:</strong> Shelf-stable groceries, personal care, and hygiene products (no dairy or refrigerated items).</li>
+            </ul>
+            <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 20px;">
+              Specific meal requests will be placed in a dedicated area in a bag with your name on it for pickup.
             </p>
-            <p>
-              LIMA is <strong>not a 501(c)3 non-profit</strong>. Donations are not tax-deductible; instead, they represent genuine, direct gift-giving and solidarity rooted in our unique island geography.
-            </p>
-          </div>
-
-          <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="bg-white p-5 rounded-2xl border border-sand-200 shadow-sm flex items-start gap-3">
-              <div class="p-2.5 rounded-xl bg-forest-50 text-forest-700">
-                <i data-lucide="shield-check" class="w-5 h-5"></i>
-              </div>
-              <div>
-                <h4 class="font-semibold text-sand-900 text-sm">Strictly Confidential</h4>
-                <p class="text-xs text-sand-800 mt-1">Names and contact details are never shared publicly or online.</p>
-              </div>
-            </div>
-
-            <div class="bg-white p-5 rounded-2xl border border-sand-200 shadow-sm flex items-start gap-3">
-              <div class="p-2.5 rounded-xl bg-forest-50 text-forest-700">
-                <i data-lucide="sparkles" class="w-5 h-5"></i>
-              </div>
-              <div>
-                <h4 class="font-semibold text-sand-900 text-sm">Flexible Support</h4>
-                <p class="text-xs text-sand-800 mt-1">From gift cards to grocery drops, meals, and practical volunteer hands.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Community Pantry Info -->
-  <section id="pantry" class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="text-center max-w-3xl mx-auto">
-        <span class="text-xs uppercase tracking-widest text-forest-600 font-bold block mb-2">Physical Location</span>
-        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-forest-900">The LIMA Community Pantry</h2>
-        <p class="mt-4 text-sand-800 text-base">
-          Our pantry is open every single day for non-perishable pantry items, hygiene products, and pre-arranged community meal pick-ups.
-        </p>
-      </div>
-
-      <div class="mt-14 grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
-        <!-- Details Card -->
-        <div class="bg-forest-50 border border-forest-100 rounded-3xl p-8 flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-2xl bg-forest-700 text-white flex items-center justify-center mb-6">
-              <i data-lucide="map-pin" class="w-6 h-6"></i>
-            </div>
-            <h3 class="font-serif text-2xl font-bold text-forest-900">Location & Hours</h3>
-            
-            <div class="mt-6 space-y-4 text-sm text-sand-800">
-              <div>
-                <div class="font-semibold text-forest-900">Address</div>
-                <div>2141 Granger Way, Lummi Island, WA 98262</div>
-              </div>
-              <div>
-                <div class="font-semibold text-forest-900">Opening Hours</div>
-                <div>Monday through Sunday: <span class="font-semibold text-forest-700">7:00 AM – 8:30 PM</span></div>
-              </div>
-              <div>
-                <div class="font-semibold text-forest-900">Parking</div>
-                <div>Available on-site. Please use designated parking spots.</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-8 pt-6 border-t border-forest-200">
-            <span class="text-xs font-semibold uppercase text-forest-700 block">Accepted Items</span>
-            <p class="text-xs text-forest-800 mt-1">Non-perishable shelf-stable groceries & personal hygiene goods. <em>(No dairy or refrigeration available)</em>.</p>
-          </div>
-        </div>
-
-        <!-- How Pickups Work -->
-        <div class="bg-sand-100 border border-sand-200 rounded-3xl p-8 flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-2xl bg-warmgold-500 text-forest-900 flex items-center justify-center mb-6">
-              <i data-lucide="package" class="w-6 h-6"></i>
-            </div>
-            <h3 class="font-serif text-2xl font-bold text-forest-900">Pantry & Meals Pickup</h3>
-            
-            <p class="mt-4 text-sm text-sand-800 leading-relaxed">
-              Anyone on the island is welcome to stop in and take groceries as needed. No identification or qualification forms are requested.
-            </p>
-
-            <div class="mt-6 space-y-3">
-              <div class="flex items-start gap-2.5 text-xs text-sand-800">
-                <i data-lucide="check-circle" class="w-4 h-4 text-forest-600 shrink-0 mt-0.5"></i>
-                <span><strong>Special Requests:</strong> Packed into labeled bags placed in dedicated areas for discreet collection.</span>
-              </div>
-              <div class="flex items-start gap-2.5 text-xs text-sand-800">
-                <i data-lucide="check-circle" class="w-4 h-4 text-forest-600 shrink-0 mt-0.5"></i>
-                <span><strong>Home-cooked Meals:</strong> Because we lack cold storage, meal providers coordinate directly for pickup or delivery.</span>
-              </div>
-            </div>
-          </div>
-
-          <a href="#request" class="mt-8 inline-flex items-center text-sm font-semibold text-forest-700 hover:text-forest-900">
-            Request an item or meal <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
-          </a>
-        </div>
-
-        <!-- Drop-offs & Volunteer -->
-        <div class="bg-forest-900 text-forest-100 rounded-3xl p-8 flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-2xl bg-forest-700 text-warmgold-400 flex items-center justify-center mb-6">
-              <i data-lucide="users" class="w-6 h-6"></i>
-            </div>
-            <h3 class="font-serif text-2xl font-bold text-white">Lend a Helping Hand</h3>
-            <p class="mt-4 text-sm text-forest-200 leading-relaxed">
-              We need helpers to stock items, clean, coordinate grocery runs, and assist with communications and matching.
-            </p>
-            <div class="mt-4 p-4 rounded-xl bg-forest-800/80 border border-forest-700 text-xs text-forest-200">
-              <strong>Drop-off boxes:</strong> Available at the Pantry. You may drop off anytime between 7am and 8:30pm.
-            </div>
-          </div>
-
-          <div class="mt-8">
-            <a href="mailto:lummiislandmutualaid@gmail.com?subject=Volunteer%20with%20LIMA" class="w-full inline-flex justify-center items-center gap-2 px-5 py-3 rounded-xl bg-warmgold-500 hover:bg-warmgold-400 text-forest-900 font-semibold text-sm transition">
-              <i data-lucide="mail" class="w-4 h-4"></i>
-              Volunteer With LIMA
-            </a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- How It Works Step-by-Step -->
-  <section id="how-it-works" class="py-20 bg-sand-100 border-t border-sand-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="text-center max-w-2xl mx-auto mb-16">
-        <span class="text-xs uppercase tracking-widest text-forest-600 font-bold block mb-2">Process</span>
-        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-forest-900">How The Network Works</h2>
-        <p class="mt-3 text-sand-800 text-base">Simple, respectful, and private connection between islanders.</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-        
-        <!-- Step 1 -->
-        <div class="bg-white p-8 rounded-3xl border border-sand-200 shadow-sm relative">
-          <div class="w-10 h-10 rounded-full bg-forest-700 text-white font-bold flex items-center justify-center text-sm mb-6">1</div>
-          <h3 class="font-serif text-xl font-bold text-forest-900">Share or Request</h3>
-          <p class="mt-3 text-sm text-sand-800 leading-relaxed">
-            Fill out an online request or visit <strong>The Islander</strong> / <strong>LIMA Community Pantry</strong> to pick up a physical paper form. Drop completed paper slips into the secure drop box at The Islander.
-          </p>
-        </div>
-
-        <!-- Step 2 -->
-        <div class="bg-white p-8 rounded-3xl border border-sand-200 shadow-sm relative">
-          <div class="w-10 h-10 rounded-full bg-forest-700 text-white font-bold flex items-center justify-center text-sm mb-6">2</div>
-          <h3 class="font-serif text-xl font-bold text-forest-900">Confidential Matching</h3>
-          <p class="mt-3 text-sm text-sand-800 leading-relaxed">
-            LIMA organizers match requests with grocery food cards, community donations, or local volunteer cooks. Your name and phone number stay strictly private and are never shared publicly.
-          </p>
-        </div>
-
-        <!-- Step 3 -->
-        <div class="bg-white p-8 rounded-3xl border border-sand-200 shadow-sm relative">
-          <div class="w-10 h-10 rounded-full bg-forest-700 text-white font-bold flex items-center justify-center text-sm mb-6">3</div>
-          <h3 class="font-serif text-xl font-bold text-forest-900">Discreet Distribution</h3>
-          <p class="mt-3 text-sm text-sand-800 leading-relaxed">
-            Pick up designated packages at the Pantry, redeem digital grocery food cards, or coordinate directly with providers for meal handoffs.
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Offer Support & Donate -->
-  <section id="donate" class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="text-xs uppercase tracking-widest text-forest-600 font-bold block mb-2">Ways to Give</span>
-        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-forest-900">Support Fellow Islanders</h2>
-        <p class="mt-3 text-sand-800 text-base">
-          Every contribution keeps our neighbors nourished. Donate grocery food cards, supply the pantry, or participate in the Adopt-a-Family program.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-        
-        <!-- Grocery Food Cards (Island & Regional) -->
-        <div class="bg-sand-50 border border-sand-200 rounded-3xl p-8">
-          <div class="flex items-center gap-3 mb-6">
-            <div class="p-3 bg-forest-100 rounded-2xl text-forest-800">
-              <i data-lucide="credit-card" class="w-6 h-6"></i>
-            </div>
             <div>
-              <h3 class="font-serif text-2xl font-bold text-forest-900">Grocery Food Cards</h3>
-              <p class="text-xs text-sand-800">High-impact, immediate assistance for fresh groceries</p>
+              <a href="mailto:lummiislandmutualaid@gmail.com?subject=Volunteer%20at%20Pantry" class="btn btn-secondary" style="font-size: 0.9rem;">Volunteer at the Pantry</a>
             </div>
           </div>
-
-          <p class="text-sm text-sand-800 mb-6 leading-relaxed">
-            LIMA matches donated grocery food cards (gift cards) directly with island families in need.
-          </p>
-
-          <div class="space-y-4">
-            <div class="bg-white p-4 rounded-2xl border border-sand-200">
-              <h4 class="font-bold text-sm text-forest-900 flex items-center gap-2">
-                <i data-lucide="store" class="w-4 h-4 text-forest-600"></i> The Islander Store (On-Island)
-              </h4>
-              <p class="text-xs text-sand-800 mt-1">
-                Donate in person at the register (cash, card, check) and state the funds are for <strong>LIMA food card recipients</strong>. We coordinate with Islander staff to assign funds to families' store accounts.
-              </p>
-            </div>
-
-            <div class="bg-white p-4 rounded-2xl border border-sand-200">
-              <h4 class="font-bold text-sm text-forest-900 flex items-center gap-2">
-                <i data-lucide="sprout" class="w-4 h-4 text-forest-600"></i> Full Bloom Farm (On-Island)
-              </h4>
-              <p class="text-xs text-sand-800 mt-1">
-                Purchase gift cards online with <code class="bg-sand-100 px-1.5 py-0.5 rounded text-forest-800 font-mono">lummiislandmutualaid@gmail.com</code> as recipient. We transfer them for redemption at the farm kiosk.
-              </p>
-            </div>
-
-            <div class="bg-white p-4 rounded-2xl border border-sand-200">
-              <h4 class="font-bold text-sm text-forest-900 flex items-center gap-2">
-                <i data-lucide="shopping-cart" class="w-4 h-4 text-forest-600"></i> Mainland Stores (Digital or Physical)
-              </h4>
-              <p class="text-xs text-sand-800 mt-1">
-                Fred Meyer, Haggen, WinCo, Walmart, Community Food Co-op, Trader Joe's, or Costco. Send digital e-cards to our email, or email us to arrange collection of physical gift cards.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Adopt A Family Tiers -->
-        <div class="bg-forest-900 text-white rounded-3xl p-8 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center gap-3 mb-6">
-              <div class="p-3 bg-forest-800 rounded-2xl text-warmgold-400">
-                <i data-lucide="heart-handshake" class="w-6 h-6"></i>
-              </div>
-              <div>
-                <h3 class="font-serif text-2xl font-bold text-white">Suggested Giving Guidelines</h3>
-                <p class="text-xs text-forest-200">Standard distribution & monthly adoption benchmarks</p>
-              </div>
-            </div>
-
-            <div class="space-y-6">
-              <div>
-                <h4 class="text-xs uppercase tracking-wider text-warmgold-400 font-semibold mb-3">One-Time Distribution Benchmarks</h4>
-                <div class="grid grid-cols-3 gap-2 text-center">
-                  <div class="bg-forest-800/80 p-3 rounded-xl border border-forest-700">
-                    <span class="text-xs text-forest-200 block">Single Person</span>
-                    <span class="text-lg font-bold text-white">$50</span>
-                  </div>
-                  <div class="bg-forest-800/80 p-3 rounded-xl border border-forest-700">
-                    <span class="text-xs text-forest-200 block">Family of 2</span>
-                    <span class="text-lg font-bold text-white">$100</span>
-                  </div>
-                  <div class="bg-forest-800/80 p-3 rounded-xl border border-forest-700">
-                    <span class="text-xs text-forest-200 block">Family of 3+</span>
-                    <span class="text-lg font-bold text-white">$200+</span>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <h4 class="text-xs uppercase tracking-wider text-warmgold-400 font-semibold mb-3">"Adopt A Family" For A Month</h4>
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center">
-                  <div class="bg-forest-800/80 p-3 rounded-xl border border-forest-700">
-                    <span class="text-xs text-forest-200 block">1 Person</span>
-                    <span class="text-lg font-bold text-warmgold-400">$200</span>
-                  </div>
-                  <div class="bg-forest-800/80 p-3 rounded-xl border border-forest-700">
-                    <span class="text-xs text-forest-200 block">Family of 2</span>
-                    <span class="text-lg font-bold text-warmgold-400">$400</span>
-                  </div>
-                  <div class="bg-forest-800/80 p-3 rounded-xl border border-forest-700">
-                    <span class="text-xs text-forest-200 block">Family of 3</span>
-                    <span class="text-lg font-bold text-warmgold-400">$600</span>
-                  </div>
-                  <div class="bg-forest-800/80 p-3 rounded-xl border border-forest-700">
-                    <span class="text-xs text-forest-200 block">Family of 4+</span>
-                    <span class="text-lg font-bold text-warmgold-400">$800</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-8 pt-6 border-t border-forest-800 flex flex-col sm:flex-row gap-4 items-center justify-between">
-            <span class="text-xs text-forest-200">Ready to coordinate a gift card or monthly adoption?</span>
-            <a href="mailto:lummiislandmutualaid@gmail.com?subject=Food%20Card%20Donation" class="px-5 py-2.5 rounded-xl bg-warmgold-500 hover:bg-warmgold-400 text-forest-900 font-bold text-xs uppercase tracking-wider transition whitespace-nowrap">
-              Email Coordinators
-            </a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Request Aid Section -->
-  <section id="request" class="py-20 bg-sand-100 border-t border-sand-200">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="bg-white rounded-3xl p-8 sm:p-12 border border-sand-200 shadow-md">
-        <div class="text-center max-w-xl mx-auto">
-          <div class="inline-flex p-3 rounded-2xl bg-forest-50 text-forest-700 mb-4">
-            <i data-lucide="handshake" class="w-7 h-7"></i>
-          </div>
-          <h2 class="font-serif text-3xl font-bold text-forest-900">Request Aid or Food Cards</h2>
-          <p class="mt-3 text-sand-800 text-sm">
-            Whether you need shelf-stable groceries, grocery gift cards, or emergency meal support, we are here for you.
-          </p>
-        </div>
-
-        <div class="mt-8 p-4 rounded-2xl bg-forest-50 border border-forest-200 text-xs sm:text-sm text-forest-900 flex items-start gap-3">
-          <i data-lucide="lock" class="w-5 h-5 text-forest-700 shrink-0 mt-0.5"></i>
-          <span><strong>Your Privacy is Sacred:</strong> We never display or share personal names or contact information. Details are solely used by our island coordination team to fulfill requests.</span>
-        </div>
-
-        <!-- Request / Contact Direct Channels -->
-        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="border border-sand-200 rounded-2xl p-6 bg-sand-50">
-            <h3 class="font-bold text-forest-900 text-base mb-2">Option A: Email Us Directly</h3>
-            <p class="text-xs text-sand-800 leading-relaxed mb-4">
-              Send an email with your household size, requested items, or preferred grocery cards (Fred Meyer, Haggen, Islander Store, etc.).
-            </p>
-            <a href="mailto:lummiislandmutualaid@gmail.com?subject=Aid%20Request%20Confidential" class="inline-flex items-center gap-2 text-xs font-bold text-forest-700 hover:text-forest-900 underline">
-              <i data-lucide="mail" class="w-4 h-4"></i> lummiislandmutualaid@gmail.com
-            </a>
-          </div>
-
-          <div class="border border-sand-200 rounded-2xl p-6 bg-sand-50">
-            <h3 class="font-bold text-forest-900 text-base mb-2">Option B: Physical Drop Slips</h3>
-            <p class="text-xs text-sand-800 leading-relaxed mb-4">
-              Prefer paper? Pick up and drop off a confidential request form at <strong>The Islander</strong> or inside the <strong>LIMA Community Pantry</strong>.
-            </p>
-            <span class="text-xs font-semibold text-forest-800 block">Available in The Islander store rack</span>
-          </div>
-        </div>
-
-        <!-- Embeddable Google Form / Custom Form Container Placeholder -->
-        <div class="mt-8 pt-8 border-t border-sand-200 text-center">
-          <p class="text-xs text-sand-600 mb-3">Running an online Google Form? You can easily embed it right here or link to it:</p>
-          <a href="https://forms.google.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-forest-700 hover:bg-forest-800 text-white font-semibold text-sm transition">
-            <i data-lucide="external-link" class="w-4 h-4"></i>
-            Open Online Request Form
-          </a>
         </div>
       </div>
+    </section>
 
-    </div>
-  </section>
-
-  <!-- Lummi Island & Regional Resources Directory -->
-  <section id="resources" class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="text-xs uppercase tracking-widest text-forest-600 font-bold block mb-2">Island Directory</span>
-        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-forest-900">Community Support & Emergency Resources</h2>
-        <p class="mt-3 text-sand-800 text-base">
-          A collection of essential resources, phone numbers, and services available on Lummi Island and throughout Whatcom County.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- How It Works & Privacy -->
+    <section id="how-it-works" style="background: #ffffff; border-top: 1px solid var(--border-soft); border-bottom: 1px solid var(--border-soft);">
+      <div class="container">
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-subtitle">A direct neighbor-to-neighbor gift economy matching goods, meals, and assistance.</p>
         
-        <!-- Lummi Island Congregational Church -->
-        <div class="bg-sand-50 border border-sand-200 rounded-3xl p-6 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center gap-3 mb-4">
-              <div class="p-2.5 rounded-xl bg-forest-100 text-forest-800">
-                <i data-lucide="cross" class="w-5 h-5"></i>
-              </div>
-              <h3 class="font-bold text-forest-900 text-base">Congregational Church</h3>
+        <div class="cards-grid">
+          <div class="card">
+            <div>
+              <h3>1. Request or Offer</h3>
+              <p>You can offer or request services, groceries, food cards, or meals. Email us directly or drop off a paper form.</p>
+              <p>Paper donation and request forms are available at <strong>The Islander Store</strong> and inside our <strong>Community Pantry</strong>.</p>
             </div>
-            <ul class="text-xs text-sand-800 space-y-2 mb-4 leading-relaxed">
-              <li>• Rides to essential appointments & doctor visits</li>
-              <li>• Medical equipment loan program</li>
-              <li>• Emergency meals and health system guidance</li>
-              <li>• Parish Health Ministry: emergency food vouchers</li>
+          </div>
+
+          <div class="card">
+            <div>
+              <h3>2. Complete Privacy</h3>
+              <p><strong>We will never share your name or contact info online.</strong></p>
+              <p>We only collect these details privately behind the scenes so we can coordinate direct matches for goods and services.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div>
+              <h3>3. Pick Up & Connect</h3>
+              <p>If you request a prepared meal, we will put you in touch with the meal provider directly to arrange pickup or delivery.</p>
+              <p>Dedicated pantry requests are bagged and labeled privately at the Granger Way pantry.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Donations & Food Cards Section -->
+    <section id="donations">
+      <div class="container">
+        <h2 class="section-title">Donations & Grocery Food Cards</h2>
+        <p class="section-subtitle">LIMA is not a 501(c)3 non-profit; contributions are not tax-deductible. They are gifts shared in the spirit of community care.</p>
+
+        <div class="split-feature">
+          <div>
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--primary); margin-bottom: 14px;">Grocery Food Cards</h3>
+            <p style="color: var(--text-muted); margin-bottom: 16px;">We match donor-funded food cards with island requests. Cards can be purchased from:</p>
+            <ul style="list-style-type: disc; margin-left: 20px; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">
+              <li><strong>The Islander Store:</strong> Donate via cash, check, or card at the checkout counter. Staff will credit the funds to dedicated LIMA recipient store accounts.</li>
+              <li><strong>Full Bloom Farm:</strong> Purchase gift certificates online with <code>lummiislandmutualaid@gmail.com</code> as recipient; we will route them directly to recipients to use at the kiosk stand.</li>
+              <li><strong>Off-Island Stores:</strong> Fred Meyer, Haggen, WinCo, Walmart, Community Food Co-op, Trader Joe's, or Costco.</li>
+              <li><strong>Digital Cards:</strong> Email e-cards to <code>lummiislandmutualaid@gmail.com</code> and we will confirm receipt and print them for distribution.</li>
             </ul>
           </div>
-          <div class="pt-3 border-t border-sand-200 text-xs font-semibold text-forest-800">
-            Call: <a href="tel:3603896697" class="underline hover:text-forest-900">(360) 389-6697</a>
+
+          <!-- ========================================================
+               IMAGE SLOT 3: LOCAL PRODUCE / STORE / GIFTS
+               Replace 'images/donations.webp' with your card or produce photo.
+               ======================================================== -->
+          <div class="image-frame split-img-frame">
+            <img src="images/collage.webp" 
+                 alt="Fresh island produce and mutual aid donations" 
+                 >
           </div>
         </div>
 
-        <!-- The Gathering Place -->
-        <div class="bg-sand-50 border border-sand-200 rounded-3xl p-6 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center gap-3 mb-4">
-              <div class="p-2.5 rounded-xl bg-forest-100 text-forest-800">
-                <i data-lucide="coffee" class="w-5 h-5"></i>
-              </div>
-              <h3 class="font-bold text-forest-900 text-base">The Gathering Place</h3>
-            </div>
-            <ul class="text-xs text-sand-800 space-y-2 mb-4 leading-relaxed">
-              <li>• <strong>Elderberries Lunch:</strong> Wednesdays at 12:00 PM</li>
-              <li>• <strong>Coffee with Friends:</strong> Fridays at 10:00 AM</li>
-              <li>• Community warmth, connection, and conversation for island seniors and neighbors.</li>
-            </ul>
+        <!-- Distribution Guidelines Table -->
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 1.45rem; color: var(--primary); margin: 48px 0 16px;">Standard Distribution & "Adopt a Family" Guidelines</h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Household Size</th>
+                <th>Standard Food Card Distribution</th>
+                <th>"Adopt a Family" (Monthly Sponsorship)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Individuals</strong></td>
+                <td>$50</td>
+                <td>$200 / month</td>
+              </tr>
+              <tr>
+                <td><strong>Family of 2</strong></td>
+                <td>$100</td>
+                <td>$400 / month</td>
+              </tr>
+              <tr>
+                <td><strong>Family of 3</strong></td>
+                <td>$200</td>
+                <td>$600 / month</td>
+              </tr>
+              <tr>
+                <td><strong>Family of 4 or more</strong></td>
+                <td>$200+</td>
+                <td>$800 / month</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size: 0.88rem; color: var(--text-muted); font-style: italic;">Note: Recipients needing additional assistance can submit requests up to 4 times per month.</p>
+      </div>
+    </section>
+
+    <!-- Additional Community Resources -->
+    <section id="resources" style="background: #ffffff; border-top: 1px solid var(--border-soft);">
+      <div class="container">
+        <h2 class="section-title">Additional Island & Regional Resources</h2>
+        <p class="section-subtitle">Local support networks, healthcare assistance, and community food programs.</p>
+
+        <div class="resource-grid">
+          <div class="resource-box">
+            <h4>Lummi Island Congregational Church</h4>
+            <p>Rides to appointments, medical equipment loans, emergency meals, and Islander vouchers via the Parish Health Ministry.</p>
+            <p class="resource-contact">📞 (360) 389-6697</p>
           </div>
-          <div class="pt-3 border-t border-sand-200 text-xs font-semibold text-forest-800">
-            Lummi Island community center gathering
+
+          <div class="resource-box">
+            <h4>The Gathering Place</h4>
+            <p><strong>Elderberries:</strong> Lunch Wednesdays at noon.<br>
+               <strong>Coffee with Friends:</strong> Fridays at 10:00 AM.</p>
+          </div>
+
+          <div class="resource-box">
+            <h4>Meals on Wheels</h4>
+            <p>Serving healthy meals to local seniors. Bellingham office located at 315 Halleck St.</p>
+            <p class="resource-contact">📞 (360) 746-6480</p>
+          </div>
+
+          <div class="resource-box">
+            <h4>Ferndale Food Bank</h4>
+            <p>Mobile food bank visits Lummi Island every other Friday, serving local seniors and island families.</p>
+          </div>
+
+          <div class="resource-box">
+            <h4>Island Chapel</h4>
+            <p>"See a need, fill a need." Emergency help, plus laundry and shower facilities available as needed.</p>
+            <p class="resource-contact">📞 Chris Immer: (360) 296-4963</p>
+          </div>
+
+          <div class="resource-box">
+            <h4>Bellingham Food Bank (TEFAP)</h4>
+            <p>Self-declare income at or below 400% of the Federal Poverty Level. No ID, SSN, or proof of income required.</p>
+            <p class="resource-contact">📞 (360) 676-0392 | <a href="https://www.bellinghamfoodbank.org/" target="_blank" rel="noopener" style="color: var(--primary);">bellinghamfoodbank.org</a></p>
+          </div>
+
+          <div class="resource-box">
+            <h4>Lummi Island Library</h4>
+            <p>WTA bus passes, Naloxone kits, free period products, and a hot tea & snack station. Open Tue, Thu, Fri (summer), and Sat.</p>
+            <p class="resource-contact">📞 (360) 758-7145</p>
+          </div>
+
+          <div class="resource-box">
+            <h4>Whatcom Asset Building Coalition</h4>
+            <p>Up-to-date county-wide resources for emergency meals, showers, ID cards, and support meetings.</p>
           </div>
         </div>
+      </div>
+    </section>
+  </main>
 
-        <!-- Island Library -->
-        <div class="bg-sand-50 border border-sand-200 rounded-3xl p-6 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center gap-3 mb-4">
-              <div class="p-2.5 rounded-xl bg-forest-100 text-forest-800">
-                <i data-lucide="book-open" class="w-5 h-5"></i>
-              </div>
-              <h3 class="font-bold text-forest-900 text-base">Island Library (Erin)</h3>
-            </div>
-            <ul class="text-xs text-sand-800 space-y-2 mb-4 leading-relaxed">
-              <li>• Hot tea station & snacks upon request</li>
-              <li>• WTA Bus Passes available</li>
-              <li>• Free Naloxone (Narcan) nasal spray</li>
-              <li>• Free menstrual products in the restroom</li>
-              <li>• Tue 1–7pm | Thu & Fri 10am–5pm | Sat 10am–5pm</li>
-            </ul>
-          </div>
-          <div class="pt-3 border-t border-sand-200 text-xs font-semibold text-forest-800">
-            Call: <a href="tel:3607587145" class="underline hover:text-forest-900">(360) 758-7145</a>
-          </div>
-        </div>
-
-        <!-- Ferndale Food Bank & Meals on Wheels -->
-        <div class="bg-sand-50 border border-sand-200 rounded-3xl p-6 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center gap-3 mb-4">
-              <div class="p-2.5 rounded-xl bg-forest-100 text-forest-800">
-                <i data-lucide="truck" class="w-5 h-5"></i>
-              </div>
-              <h3 class="font-bold text-forest-900 text-base">Ferndale Food Bank & MOW</h3>
-            </div>
-            <ul class="text-xs text-sand-800 space-y-2 mb-4 leading-relaxed">
-              <li>• <strong>Ferndale Food Bank:</strong> Visits Lummi Island every other Friday, serving seniors & families.</li>
-              <li>• <strong>Meals on Wheels:</strong> Delivering warm meals to homebound seniors across Whatcom County.</li>
-            </ul>
-          </div>
-          <div class="pt-3 border-t border-sand-200 text-xs font-semibold text-forest-800">
-            MOW Office: <a href="tel:3607466480" class="underline hover:text-forest-900">(360) 746-6480</a>
-          </div>
-        </div>
-
-        <!-- Island Chapel -->
-        <div class="bg-sand-50 border border-sand-200 rounded-3xl p-6 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center gap-3 mb-4">
-              <div class="p-2.5 rounded-xl bg-forest-100 text-forest-800">
-                <i data-lucide="home" class="w-5 h-5"></i>
-              </div>
-              <h3 class="font-bold text-forest-900 text-base">Island Chapel</h3>
-            </div>
-            <p class="text-xs text-sand-800 mb-3 leading-relaxed">
-              "See a need, fill a need." Support for basic needs, including access to shower and laundry facilities as needed.
-            </p>
-            <div class="text-xs text-forest-900 font-medium">Contact: Chris Immer</div>
-          </div>
-          <div class="pt-3 border-t border-sand-200 text-xs font-semibold text-forest-800">
-            Call: <a href="tel:3602964963" class="underline hover:text-forest-900">(360) 296-4963</a>
-          </div>
-        </div>
-
-        <!-- TEFAP & Bellingham Food Bank -->
-        <div class="bg-sand-50 border border-sand-200 rounded-3xl p-6 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center gap-3 mb-4">
-              <div class="p-2.5 rounded-xl bg-forest-100 text-forest-800">
-                <i data-lucide="apple" class="w-5 h-5"></i>
-              </div>
-              <h3 class="font-bold text-forest-900 text-base">TEFAP Food Assistance</h3>
-            </div>
-            <p class="text-xs text-sand-800 mb-3 leading-relaxed">
-              Self-declare income at or below 400% FPL. No proof of income, SSN, or citizenship required.
-            </p>
-            <div class="text-xs text-sand-800">Local Partner: Alternatives to Hunger / Bellingham Food Bank.</div>
-          </div>
-          <div class="pt-3 border-t border-sand-200 text-xs font-semibold text-forest-800">
-            <a href="https://www.bellinghamfoodbank.org" target="_blank" rel="noopener noreferrer" class="underline hover:text-forest-900">bellinghamfoodbank.org</a> • (360) 676-0392
-          </div>
-        </div>
-
+  <!-- Site Footer -->
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <h4>Lummi Island Mutual Aid</h4>
+        <p>A grassroots community initiative built on the honor system, mutual aid, and care for our neighbors across Lummi Island, WA.</p>
       </div>
 
-      <!-- Whatcom Asset Building Coalition banner -->
-      <div class="mt-8 p-6 rounded-3xl bg-sand-100 border border-sand-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-        <div class="flex items-center gap-3">
-          <i data-lucide="info" class="w-5 h-5 text-forest-700 shrink-0"></i>
-          <span class="text-xs sm:text-sm text-sand-900">
-            Looking for wider county support (emergency shelter, identification assistance, healthcare)? Explore the <strong>Whatcom Asset Building Coalition</strong> directory.
-          </span>
-        </div>
-        <a href="https://whatcomabc.org" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-xl bg-forest-700 hover:bg-forest-800 text-white text-xs font-semibold transition shrink-0">
-          Visit Whatcom ABC
-        </a>
+      <div class="footer-col">
+        <h4>Pantry Location</h4>
+        <p>2141 Granger Way<br>Lummi Island, WA 98262<br>Daily: 7:00 AM – 8:30 PM</p>
       </div>
 
+      <div class="footer-col">
+        <h4>Contact & Connect</h4>
+        <p>Email: <a href="mailto:lummiislandmutualaid@gmail.com">lummiislandmutualaid@gmail.com</a></p>
+        <p style="margin-top: 10px;">Find us on NextDoor for weekly updates and urgent needs.</p>
+      </div>
     </div>
-  </section>
 
-  <!-- Footer -->
-  <footer class="bg-forest-950 text-forest-100 pt-16 pb-12 border-t border-forest-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-forest-900/60">
-        
-        <!-- Brand Info -->
-        <div class="md:col-span-2 space-y-4">
-          <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-lg bg-forest-700 text-sand-50 flex items-center justify-center font-serif font-bold text-lg">
-              L
-            </div>
-            <span class="font-serif text-lg font-bold tracking-tight text-white">Lummi Island Mutual Aid</span>
-          </div>
-          <p class="text-xs text-forest-300 max-w-sm leading-relaxed">
-            Fostering cooperation, mutual aid, and community care on Lummi Island, Washington. Take what you need, share what you can.
-          </p>
-          <div class="text-xs text-forest-400">
-            Community Pantry: 2141 Granger Way, Lummi Island, WA 98262
-          </div>
-        </div>
-
-        <!-- Quick Navigation -->
-        <div>
-          <h4 class="text-xs uppercase tracking-wider font-bold text-white mb-3">Explore</h4>
-          <ul class="text-xs text-forest-300 space-y-2">
-            <li><a href="#about" class="hover:text-white transition">About LIMA</a></li>
-            <li><a href="#pantry" class="hover:text-white transition">Community Pantry</a></li>
-            <li><a href="#how-it-works" class="hover:text-white transition">How It Works</a></li>
-            <li><a href="#donate" class="hover:text-white transition">Donate Grocery Cards</a></li>
-            <li><a href="#request" class="hover:text-white transition">Confidential Aid Request</a></li>
-            <li><a href="#resources" class="hover:text-white transition">Island Resources</a></li>
-          </ul>
-        </div>
-
-        <!-- Direct Contact -->
-        <div>
-          <h4 class="text-xs uppercase tracking-wider font-bold text-white mb-3">Get in Touch</h4>
-          <p class="text-xs text-forest-300 mb-3 leading-relaxed">
-            Have questions, want to volunteer, or drop off grocery gift cards?
-          </p>
-          <a href="mailto:lummiislandmutualaid@gmail.com" class="inline-flex items-center gap-2 text-xs font-semibold text-warmgold-400 hover:text-warmgold-300">
-            <i data-lucide="mail" class="w-4 h-4"></i>
-            lummiislandmutualaid@gmail.com
-          </a>
-        </div>
-
-      </div>
-
-      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-forest-400 gap-4">
-        <div>
-          &copy; <script>document.write(new Date().getFullYear())</script> Lummi Island Mutual Aid. All volunteer-run.
-        </div>
-        <div class="flex items-center gap-4">
-          <span>Not a 501(c)3 Organization</span>
-          <span>•</span>
-          <span>Built for GitHub Pages</span>
-        </div>
+    <div class="footer-bottom">
+      <div class="container">
+        &copy; Lummi Island Mutual Aid (LIMA). Made for the Lummi community.
       </div>
     </div>
   </footer>
 
-  <!-- Simple Mobile Toggle Script & Lucide Icon Render -->
-  <script>
-    lucide.createIcons();
-
-    const menuBtn = document.getElementById('menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const mobileLinks = document.querySelectorAll('.mobile-link');
-
-    if (menuBtn && mobileMenu) {
-      menuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-      });
-
-      mobileLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          mobileMenu.classList.add('hidden');
-        });
-      });
-    }
-  </script>
 </body>
 </html>
