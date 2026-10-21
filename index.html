@@ -4,25 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lummi Island Mutual Aid (LIMA)</title>
-  <meta name="description" content="Fostering cooperation and strengthening our island spirit through food sharing, community pantry support, and mutual aid on Lummi Island.">
+  <meta name="description" content="Fostering cooperation and strengthening our island spirit through neighbor-to-neighbor mutual aid, food sharing, and community pantry support on Lummi Island.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #2b533e;        /* Deep cedar/forest green */
-      --primary-light: #3e7358;
-      --accent: #d97746;         /* Warm terracotta/apricot */
-      --accent-hover: #be6132;
-      --bg-cream: #faf8f5;       /* Warm linen backdrop */
+      --primary: #234734;          /* PNW Deep Cedar */
+      --primary-light: #326349;
+      --accent: #d9743e;           /* Warm Terracotta */
+      --accent-hover: #bd5c29;
+      --bg-cream: #faf7f2;         /* Warm Linen */
       --card-bg: #ffffff;
-      --text-main: #232724;
-      --text-muted: #59615a;
-      --border-soft: #e5e9e4;
-      --badge-bg: #eaf1ed;
-      --badge-text: #244634;
-      --shadow: 0 8px 24px rgba(43, 83, 62, 0.07);
-      --radius: 14px;
+      --text-main: #242926;
+      --text-muted: #576159;
+      --border-soft: #e2e8e3;
+      --badge-bg: #e8f0ec;
+      --badge-text: #204533;
+      --shadow: 0 8px 24px rgba(35, 71, 52, 0.08);
+      --radius: 12px;
     }
 
     * {
@@ -40,8 +40,8 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Top Utility Bar */
-    .top-bar {
+    /* Top Utility Status Bar */
+    .status-bar {
       background: var(--primary);
       color: #ffffff;
       text-align: center;
@@ -50,18 +50,27 @@
       font-weight: 500;
     }
 
-    .top-bar strong {
-      color: #f7d58d;
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    /* Container */
+    .status-dot {
+      width: 9px;
+      height: 9px;
+      background: #4ade80;
+      border-radius: 50%;
+      box-shadow: 0 0 0 2px rgba(74, 222, 128, 0.35);
+    }
+
     .container {
       max-width: 1080px;
       margin: 0 auto;
       padding: 0 20px;
     }
 
-    /* Navigation */
+    /* Header & Navigation */
     header.site-header {
       background: #ffffff;
       border-bottom: 1px solid var(--border-soft);
@@ -74,23 +83,31 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 18px 0;
+      padding: 16px 0;
     }
 
+    /* Logo Slot */
     .logo-group {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       text-decoration: none;
       color: var(--primary);
+    }
+
+    .site-logo {
+      height: 48px;
+      width: auto;
+      max-width: 120px;
+      object-fit: contain;
+      display: block;
     }
 
     .logo-text h1 {
       font-family: 'Playfair Display', serif;
       font-size: 1.35rem;
       font-weight: 700;
-      letter-spacing: -0.01em;
-      line-height: 1.2;
+      line-height: 1.15;
     }
 
     .logo-text p {
@@ -102,7 +119,7 @@
 
     nav.nav-links {
       display: flex;
-      gap: 20px;
+      gap: 18px;
       align-items: center;
     }
 
@@ -110,7 +127,7 @@
       text-decoration: none;
       color: var(--text-muted);
       font-weight: 500;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       transition: color 0.2s;
     }
 
@@ -122,8 +139,8 @@
       background: var(--primary);
       color: #fff !important;
       padding: 8px 16px;
-      border-radius: 8px;
-      transition: background 0.2s;
+      border-radius: 6px;
+      font-weight: 600;
     }
 
     .btn-nav:hover {
@@ -151,42 +168,34 @@
     }
 
     .hero-content p {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       color: var(--text-muted);
       margin-bottom: 24px;
-    }
-
-    .honor-callout {
-      background: #fdf5ef;
-      border-left: 4px solid var(--accent);
-      padding: 16px 20px;
-      border-radius: 0 10px 10px 0;
-      margin-bottom: 28px;
-      font-size: 0.95rem;
-      color: #63331b;
     }
 
     .hero-actions {
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
+      margin-bottom: 24px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 12px 24px;
+      padding: 13px 26px;
       border-radius: 8px;
       font-weight: 600;
       text-decoration: none;
       transition: all 0.2s ease;
-      font-size: 1rem;
+      font-size: 0.98rem;
     }
 
     .btn-primary {
       background: var(--accent);
       color: #ffffff;
+      box-shadow: 0 4px 12px rgba(217, 116, 62, 0.25);
     }
 
     .btn-primary:hover {
@@ -194,23 +203,31 @@
     }
 
     .btn-secondary {
-      background: #ffffff;
-      color: var(--primary);
-      border: 1.5px solid var(--border-soft);
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(35, 71, 52, 0.2);
     }
 
     .btn-secondary:hover {
-      border-color: var(--primary);
-      background: var(--badge-bg);
+      background: var(--primary-light);
     }
 
-    /* Image Wrapper Styles */
+    .honor-card {
+      background: #fdf6f0;
+      border-left: 4px solid var(--accent);
+      padding: 16px 20px;
+      border-radius: 0 10px 10px 0;
+      font-size: 0.92rem;
+      color: #63331b;
+      line-height: 1.55;
+    }
+
+    /* Visual Media Frames */
     .image-frame {
       border-radius: var(--radius);
       overflow: hidden;
       box-shadow: var(--shadow);
-      background: #e7ece8;
-      position: relative;
+      background: #e4ebe6;
     }
 
     .image-frame img {
@@ -224,7 +241,7 @@
       height: 380px;
     }
 
-    /* Section Styles */
+    /* Section Styling */
     section {
       padding: 56px 0;
     }
@@ -240,151 +257,12 @@
     .section-subtitle {
       text-align: center;
       color: var(--text-muted);
-      max-width: 650px;
-      margin: 0 auto 40px;
+      max-width: 680px;
+      margin: 0 auto 36px;
       font-size: 1.05rem;
     }
-/* Weekly Wishlist Widget */
-.wishlist-widget {
-  background: #ffffff;
-  border: 1.5px solid var(--border-soft);
-  border-radius: var(--radius);
-  padding: 32px;
-  box-shadow: var(--shadow);
-  margin-top: 36px;
-}
 
-.wishlist-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-
-.wishlist-tag {
-  display: inline-block;
-  background: #fdf0e9;
-  color: var(--accent);
-  font-weight: 700;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 4px 10px;
-  border-radius: 4px;
-  margin-bottom: 6px;
-}
-
-.wishlist-header h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.6rem;
-  color: var(--primary);
-}
-
-.wishlist-date {
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  background: var(--bg-cream);
-  padding: 4px 12px;
-  border-radius: 20px;
-  border: 1px solid var(--border-soft);
-}
-
-.wishlist-intro {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  margin-bottom: 24px;
-}
-
-.wishlist-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-}
-
-.wishlist-col {
-  background: var(--bg-cream);
-  border-radius: 10px;
-  padding: 20px;
-  border: 1px solid var(--border-soft);
-}
-
-.wishlist-col h4 {
-  font-size: 1rem;
-  color: var(--primary);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 14px;
-}
-
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  display: inline-block;
-}
-
-.urgent-dot { background: var(--accent); }
-.routine-dot { background: var(--primary); }
-
-.wishlist-col ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.wishlist-col ul li {
-  font-size: 0.92rem;
-  color: var(--text-main);
-  padding: 6px 0;
-  border-bottom: 1px dashed #e1e7e2;
-  display: flex;
-  align-items: center;
-}
-
-.wishlist-col ul li:last-child {
-  border-bottom: none;
-}
-
-.wishlist-col ul li::before {
-  content: "•";
-  color: var(--primary-light);
-  font-weight: bold;
-  font-size: 1.1rem;
-  margin-right: 8px;
-}
-
-.wishlist-footer {
-  margin-top: 20px;
-  padding-top: 16px;
-  border-top: 1px solid var(--border-soft);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  font-size: 0.88rem;
-  color: var(--text-muted);
-}
-
-.wishlist-link {
-  color: var(--primary);
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.wishlist-link:hover {
-  text-decoration: underline;
-}
-
-@media (max-width: 680px) {
-  .wishlist-grid {
-    grid-template-columns: 1fr;
-  }
-}
-    /* Pantry Showcase Section */
+    /* Pantry Showcase */
     .pantry-card {
       background: var(--card-bg);
       border-radius: var(--radius);
@@ -393,7 +271,6 @@
       overflow: hidden;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      align-items: stretch;
     }
 
     .pantry-img-container {
@@ -409,26 +286,21 @@
     }
 
     .pantry-details {
-      padding: 36px 36px;
+      padding: 36px;
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
 
-    .meta-badges {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-    }
-
     .badge {
       background: var(--badge-bg);
       color: var(--badge-text);
-      font-size: 0.85rem;
-      font-weight: 600;
+      font-size: 0.82rem;
+      font-weight: 700;
       padding: 5px 12px;
       border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 14px;
     }
 
     .pantry-details h3 {
@@ -440,35 +312,157 @@
 
     .info-list {
       list-style: none;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     .info-list li {
       margin-bottom: 12px;
       font-size: 0.95rem;
-      color: var(--text-main);
       display: flex;
-      align-items: flex-start;
-      gap: 10px;
+      gap: 12px;
     }
 
     .info-list li strong {
       color: var(--primary);
-      min-width: 90px;
+      min-width: 95px;
+    }
+
+    /* Wishlist Widget */
+    .wishlist-widget {
+      background: #ffffff;
+      border: 1.5px solid var(--border-soft);
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow);
+      margin-top: 36px;
+    }
+
+    .wishlist-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .wishlist-tag {
+      display: inline-block;
+      background: #fdf0e9;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 6px;
+    }
+
+    .wishlist-header h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--primary);
+    }
+
+    .wishlist-date {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      background: var(--bg-cream);
+      padding: 5px 12px;
+      border-radius: 20px;
+      border: 1px solid var(--border-soft);
+      font-weight: 500;
+    }
+
+    .wishlist-intro {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .wishlist-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .wishlist-col {
+      background: var(--bg-cream);
+      border-radius: 10px;
+      padding: 20px;
+      border: 1px solid var(--border-soft);
+    }
+
+    .wishlist-col h4 {
+      font-size: 1rem;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .bullet-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
       display: inline-block;
     }
 
-    /* Cards Grid */
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-      gap: 28px;
+    .bullet-urgent { background: var(--accent); }
+    .bullet-routine { background: var(--primary); }
+
+    .wishlist-col ul {
+      list-style: none;
     }
 
-    .card {
+    .wishlist-col ul li {
+      font-size: 0.92rem;
+      color: var(--text-main);
+      padding: 7px 0;
+      border-bottom: 1px dashed #e1e7e2;
+      display: flex;
+      align-items: center;
+    }
+
+    .wishlist-col ul li:last-child {
+      border-bottom: none;
+    }
+
+    .wishlist-col ul li::before {
+      content: "•";
+      color: var(--primary-light);
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-right: 8px;
+    }
+
+    .wishlist-footer {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-soft);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    /* 3 Ways to Give Cards */
+    .give-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .give-card {
       background: var(--card-bg);
       border-radius: var(--radius);
-      padding: 32px;
+      padding: 28px;
       border: 1px solid var(--border-soft);
       box-shadow: var(--shadow);
       display: flex;
@@ -476,23 +470,30 @@
       justify-content: space-between;
     }
 
-    .card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.45rem;
-      color: var(--primary);
+    .give-icon {
+      font-size: 1.75rem;
       margin-bottom: 14px;
+      display: inline-block;
     }
 
-    .card p {
-      font-size: 0.95rem;
+    .give-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .give-card p {
+      font-size: 0.92rem;
       color: var(--text-muted);
-      margin-bottom: 18px;
+      margin-bottom: 14px;
+      line-height: 1.55;
     }
 
-    /* Custom Tables */
+    /* Tables */
     .table-container {
       overflow-x: auto;
-      margin: 24px 0;
+      margin: 28px 0;
       border-radius: 10px;
       border: 1px solid var(--border-soft);
       background: #ffffff;
@@ -511,32 +512,15 @@
     }
 
     th {
-      background: #f4f6f4;
+      background: #f4f7f4;
       color: var(--primary);
       font-weight: 600;
     }
 
-    tr:last-child td {
-      border-bottom: none;
-    }
-
-    /* Two-Column Feature */
-    .split-feature {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 36px;
-      align-items: center;
-      margin-top: 40px;
-    }
-
-    .split-img-frame {
-      height: 320px;
-    }
-
-    /* Resource Box Grid */
+    /* Resource Directory */
     .resource-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 20px;
     }
 
@@ -544,8 +528,11 @@
       background: #ffffff;
       border: 1px solid var(--border-soft);
       border-radius: 10px;
-      padding: 20px;
+      padding: 22px;
       transition: transform 0.2s ease, border-color 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .resource-box:hover {
@@ -553,23 +540,46 @@
       border-color: var(--primary-light);
     }
 
+    .resource-category {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--primary);
+      background: var(--badge-bg);
+      padding: 3px 8px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 10px;
+      width: fit-content;
+    }
+
     .resource-box h4 {
       color: var(--primary);
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       margin-bottom: 8px;
+      font-family: 'Playfair Display', serif;
     }
 
     .resource-box p {
       font-size: 0.88rem;
       color: var(--text-muted);
-      margin-bottom: 8px;
+      margin-bottom: 14px;
       line-height: 1.5;
     }
 
-    .resource-contact {
+    .resource-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
       font-weight: 600;
-      color: var(--text-main);
       font-size: 0.88rem;
+      text-decoration: none;
+    }
+
+    .resource-link:hover {
+      text-decoration: underline;
     }
 
     /* Footer */
@@ -589,7 +599,7 @@
 
     .footer-col h4 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       margin-bottom: 16px;
       color: #f7d58d;
     }
@@ -613,19 +623,19 @@
       color: #b0c4b8;
     }
 
-    /* Mobile Responsive */
+    /* Responsive */
     @media (max-width: 820px) {
-      .hero-grid, .pantry-card, .split-feature, .footer-grid {
+      .hero-grid, .pantry-card, .wishlist-grid, .footer-grid {
         grid-template-columns: 1fr;
       }
       .nav-links {
-        display: none; /* Can be toggled with a lightweight menu button if desired */
+        display: none;
       }
       .hero-content h2 {
         font-size: 2.2rem;
       }
       .hero-image-frame {
-        height: 260px;
+        height: 250px;
       }
       .pantry-img-container {
         height: 240px;
@@ -636,29 +646,34 @@
 </head>
 <body>
 
-  <!-- Top Announcement Bar -->
-  <aside class="top-bar" aria-label="Announcement">
-    Community Pantry open daily: <strong>7:00 AM – 8:30 PM</strong> at 2141 Granger Way
+  <!-- Top Live Status Bar -->
+  <aside class="status-bar" aria-label="Pantry Status">
+    <div class="status-pill">
+      <span class="status-dot"></span>
+      <span><strong>Pantry Open Today:</strong> 7:00 AM – 8:30 PM · 2141 Granger Way</span>
+    </div>
   </aside>
 
-  <!-- Site Navigation -->
+  <!-- Navigation Bar with Logo -->
   <header class="site-header">
     <div class="container nav-wrapper">
-      <!-- Site Logo & Title 
-<a href="#" class="logo-group">
-  <img src="images/LIMA.webp" 
-       alt="Lummi Island Mutual Aid Logo" 
-       class="site-logo" 
-       onerror="this.style.display='none';">-->
-  <div class="logo-text">
-    <h1>Lummi Island Mutual Aid</h1>
-    <p>LIMA Community Resource</p>
-  </div>
-</a>
-      <nav class="nav-links" aria-label="Primary Navigation">
+      <a href="#" class="logo-group">
+        <!-- ========================================================
+             SLOT 0: LOGO (images/logo.webp or images/logo.png)
+             ======================================================== -->
+        <img src="images/logo.webp" 
+             alt="Lummi Island Mutual Aid Logo" 
+             class="site-logo" 
+             onerror="this.style.display='none';">
+        <div class="logo-text">
+          <h1>Lummi Island Mutual Aid</h1>
+          <p>LIMA Community Resource</p>
+        </div>
+      </a>
+      <nav class="nav-links" aria-label="Main Navigation">
         <a href="#pantry">The Pantry</a>
-        <a href="#how-it-works">How It Works</a>
-        <a href="#donations">Ways to Give</a>
+        <a href="#wishlist">Needs List</a>
+        <a href="#give">Ways to Give</a>
         <a href="#resources">Island Resources</a>
         <a href="mailto:lummiislandmutualaid@gmail.com" class="btn-nav">Contact Us</a>
       </nav>
@@ -666,31 +681,35 @@
   </header>
 
   <main>
-    <!-- Hero Section -->
+    <!-- Hero Section with Action Split -->
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-content">
           <h2>Join Our Community in Making a Difference</h2>
-          <p>LIMA is here to foster cooperation and strengthen our island spirit. Everyone's contribution—big or small—helps keep our Lummi community supported and resilient.</p>
-          
-          <div class="honor-callout">
-            <strong>The Honor System:</strong> We ask that neighbors keep the spirit of community in mind and heart, and please only take what you need so we can spread the love.
+          <p>LIMA fosters cooperation and strengthens our island spirit. Everyone's contribution—big or small—helps keep our Lummi community fed, supported, and resilient.</p>
+
+          <!-- High-Contrast Action Split -->
+          <div class="hero-actions">
+            <a href="mailto:lummiislandmutualaid@gmail.com?subject=LIMA%20Aid%20Request&body=Hello%20LIMA,%0A%0AI%20would%20like%20to%20request%20assistance%20with:%0A-%20Grocery%20Food%20Card%20(Family%20Size:%20)%0A-%20Pantry%20Goods%0A-%20Home-cooked%20Meal%0A%0ABest%20way%20to%20contact%20me%20privately:%0A" class="btn btn-primary">
+              🥫 Request Food or Aid
+            </a>
+            <a href="mailto:lummiislandmutualaid@gmail.com?subject=Offer%20Food,%20Services,%20or%20Donations&body=Hello%20LIMA,%0A%0AI%20would%20like%20to%20offer:%0A-%20Shelf-stable%20groceries%0A-%20A%20prepared%20meal%20for%20a%20family%0A-%20Volunteer%20time%20at%20the%20pantry%0A-%20Grocery%20food%20card(s)%0A%0AMy%20details:%0A" class="btn btn-secondary">
+              🤲 Offer Help or Donate
+            </a>
           </div>
 
-          <div class="hero-actions">
-            <a href="mailto:lummiislandmutualaid@gmail.com?subject=Offer%20Food%20or%20Services" class="btn btn-primary">Offer Support</a>
-            <a href="mailto:lummiislandmutualaid@gmail.com?subject=Request%20for%20Assistance" class="btn btn-secondary">Request Assistance</a>
+          <div class="honor-card">
+            <strong>The Honor System:</strong> We ask neighbors to keep the spirit of community in mind and heart—please take only what you need so we can spread the love to all islanders.
           </div>
         </div>
 
         <!-- ========================================================
-             IMAGE SLOT 1: HERO / COMMUNITY BANNER
-             Replace 'images/hero.webp' with your exported image file.
+             SLOT 1: HERO IMAGE (images/hero.webp)
              ======================================================== -->
         <div class="image-frame hero-image-frame">
-          <img src="images/LIMA.webp" 
-               alt="logo" 
-               >
+          <img src="images/love.webp" 
+               alt="Scenic Lummi Island community view" 
+               onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=1000&q=80';">
         </div>
       </div>
     </section>
@@ -700,146 +719,119 @@
       <div class="container">
         <div class="pantry-card">
           <!-- ========================================================
-               IMAGE SLOT 2: PANTRY INTERIOR OR BUILDING
-               Replace 'images/pantry.webp' with your pantry photo.
+               SLOT 2: PANTRY INTERIOR OR BUILDING (images/pantry.webp)
                ======================================================== -->
           <div class="pantry-img-container">
             <img src="images/pantry.webp" 
-                 alt="Inside the LIMA Community Pantry shelves with shelf-stable food">
+                 alt="Inside the LIMA Community Pantry shelves on Granger Way" 
+                 onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1578357078586-491adf1aa5ba?auto=format&fit=crop&w=1000&q=80';">
           </div>
 
           <div class="pantry-details">
-            <div class="meta-badges">
-              <span class="badge">Open Daily</span>
-              <span class="badge">Walk-In Access</span>
-            </div>
+            <span class="badge">Open Daily · 7:00 AM – 8:30 PM</span>
             <h3>The LIMA Community Pantry</h3>
             <ul class="info-list">
               <li><strong>Location:</strong> 2141 Granger Way, Lummi Island, WA 98262</li>
-              <li><strong>Hours:</strong> Monday – Sunday, 7:00 AM – 8:30 PM</li>
-              <li><strong>Parking:</strong> On-site in designated areas</li>
-              <li><strong>Items:</strong> Shelf-stable groceries, personal care, and hygiene products (no dairy or refrigerated items).</li>
+              <li><strong>Parking:</strong> Available on-site in designated areas</li>
+              <li><strong>Available:</strong> Shelf-stable groceries, hygiene & personal care items (no dairy or refrigeration).</li>
+              <li><strong>Meal Pickups:</strong> Labeled bags for pre-arranged meal or special requests.</li>
             </ul>
-            <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 20px;">
-              Specific meal requests will be placed in a dedicated area in a bag with your name on it for pickup.
+            <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 20px;">
+              Paper copies of request and donation slips are available inside the pantry and at The Islander Store. Completed slips can be dropped in the collection box at The Islander.
             </p>
             <div>
-              <a href="mailto:lummiislandmutualaid@gmail.com?subject=Volunteer%20at%20Pantry" class="btn btn-secondary" style="font-size: 0.9rem;">Volunteer at the Pantry</a>
+              <a href="mailto:lummiislandmutualaid@gmail.com?subject=Volunteer%20Inquiry" class="btn btn-secondary" style="font-size: 0.88rem; padding: 10px 18px;">Volunteer at the Pantry</a>
             </div>
-            <!-- Weekly Wishlist Widget -->
-<div class="wishlist-widget">
-  <div class="wishlist-header">
-    <div>
-      <span class="wishlist-tag">Current Needs</span>
-      <h3>Pantry Weekly Wishlist</h3>
-    </div>
-    <span class="wishlist-date">Updated: October 2026</span>
-  </div>
+          </div>
+        </div>
 
-  <p class="wishlist-intro">
-    Help keep our shelves stocked! Drop donations directly at <strong>2141 Granger Way</strong> (open 7:00 AM – 8:30 PM daily).
-  </p>
+        <!-- Weekly Wishlist Widget -->
+        <div id="wishlist" class="wishlist-widget">
+          <div class="wishlist-header">
+            <div>
+              <span class="wishlist-tag">Current Needs</span>
+              <h3>Pantry Weekly Wishlist</h3>
+            </div>
+            <span class="wishlist-date">Updated: October 2026</span>
+          </div>
 
-  <div class="wishlist-grid">
-    <!-- Urgent Items -->
-    <div class="wishlist-col urgent">
-      <h4><span class="dot urgent-dot"></span> High Need Right Now</h4>
-      <ul>
-        <li>Canned proteins (tuna, chicken, salmon)</li>
-        <li>Hearty soups, stews & chili</li>
-        <li>Peanut butter & fruit preserves</li>
-        <li>Cooking oil, olive oil & condiments</li>
-        <li>Menstrual & personal hygiene products</li>
-      </ul>
-    </div>
+          <p class="wishlist-intro">
+            Help keep our community shelves balanced! Drop donations directly inside the pantry boxes at <strong>2141 Granger Way</strong> during opening hours.
+          </p>
 
-    <!-- Always Needed Items -->
-    <div class="wishlist-col routine">
-      <h4><span class="dot routine-dot"></span> Always Welcome</h4>
-      <ul>
-        <li>Rolled oats & hot breakfast cereals</li>
-        <li>Pasta, brown & white rice, quinoa</li>
-        <li>Canned black, pinto & garbanzo beans</li>
-        <li>Toothpaste, toothbrushes & soap bars</li>
-        <li>Laundry pods & dish detergent</li>
-      </ul>
-    </div>
-  </div>
+          <div class="wishlist-grid">
+            <!-- High Need Items -->
+            <div class="wishlist-col">
+              <h4><span class="bullet-dot bullet-urgent"></span> High Need Right Now</h4>
+              <ul>
+                <li>Canned proteins (tuna, chicken, wild salmon)</li>
+                <li>Hearty soups, chilis & stews</li>
+                <li>Nut butters & fruit spreads</li>
+                <li>Cooking oils & everyday condiments</li>
+                <li>Menstrual & personal care products</li>
+              </ul>
+            </div>
 
-  <div class="wishlist-footer">
-    <span>💡 <em>No dairy, refrigerated, or expired goods please.</em></span>
-    <a href="mailto:lummiislandmutualaid@gmail.com?subject=Pantry%20Donation%20Inquiry" class="wishlist-link">Arrange larger drop-off &rarr;</a>
-  </div>
-</div>
+            <!-- Always Welcome Items -->
+            <div class="wishlist-col">
+              <h4><span class="bullet-dot bullet-routine"></span> Always Welcome</h4>
+              <ul>
+                <li>Rolled oats & warm breakfast cereals</li>
+                <li>Pasta, jasmine/brown rice & quinoa</li>
+                <li>Canned beans (black, garbanzo, pinto)</li>
+                <li>Toothpaste, toothbrushes & bar soaps</li>
+                <li>Dish soap & laundry detergent pods</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="wishlist-footer">
+            <span>💡 <em>Please check expiration dates; no refrigerated or dairy products.</em></span>
+            <a href="mailto:lummiislandmutualaid@gmail.com?subject=Bulk%20Donation%20Question" style="color: var(--primary); font-weight: 600; text-decoration: none;">Coordinate larger donations &rarr;</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- How It Works & Privacy -->
-    <section id="how-it-works" style="background: #ffffff; border-top: 1px solid var(--border-soft); border-bottom: 1px solid var(--border-soft);">
+    <!-- Ways to Give (Structured Cards) -->
+    <section id="give" style="background: #ffffff; border-top: 1px solid var(--border-soft); border-bottom: 1px solid var(--border-soft);">
       <div class="container">
-        <h2 class="section-title">How It Works</h2>
-        <p class="section-subtitle">A direct neighbor-to-neighbor gift economy matching goods, meals, and assistance.</p>
-        
-        <div class="cards-grid">
-          <div class="card">
+        <h2 class="section-title">Ways to Give & Share</h2>
+        <p class="section-subtitle">LIMA operates as an informal mutual aid collective and gift economy. We are not a 501(c)3 non-profit; donations are voluntary gifts of community care.</p>
+
+        <div class="give-grid">
+          <!-- Card 1 -->
+          <div class="give-card">
             <div>
-              <h3>1. Request or Offer</h3>
-              <p>You can offer or request services, groceries, food cards, or meals. Email us directly or drop off a paper form.</p>
-              <p>Paper donation and request forms are available at <strong>The Islander Store</strong> and inside our <strong>Community Pantry</strong>.</p>
+              <span class="give-icon">🏪</span>
+              <h3>On-Island Accounts</h3>
+              <p><strong>The Islander Store:</strong> Donate cash, check, or card at checkout. Mention it is for <em>LIMA food card recipients</em> to credit store accounts.</p>
+              <p><strong>Full Bloom Farm:</strong> Order gift certificates online with Lummi Island Mutual Aid as recipient; we route vouchers to families for farm stand kiosk use.</p>
             </div>
           </div>
 
-          <div class="card">
+          <!-- Card 2 -->
+          <div class="give-card">
             <div>
-              <h3>2. Complete Privacy</h3>
-              <p><strong>We will never share your name or contact info online.</strong></p>
-              <p>We only collect these details privately behind the scenes so we can coordinate direct matches for goods and services.</p>
+              <span class="give-icon">💳</span>
+              <h3>Grocery Cards</h3>
+              <p>Donate physical or digital grocery cards from Fred Meyer, Haggen, WinCo, Walmart, Community Food Co-op, Trader Joe's, or Costco.</p>
+              <p>Send digital cards to <a href="mailto:lummiislandmutualaid@gmail.com">lummiislandmutualaid@gmail.com</a> or email us to arrange physical pickup.</p>
             </div>
           </div>
 
-          <div class="card">
+          <!-- Card 3 -->
+          <div class="give-card">
             <div>
-              <h3>3. Pick Up & Connect</h3>
-              <p>If you request a prepared meal, we will put you in touch with the meal provider directly to arrange pickup or delivery.</p>
-              <p>Dedicated pantry requests are bagged and labeled privately at the Granger Way pantry.</p>
+              <span class="give-icon">🍲</span>
+              <h3>Meals & Services</h3>
+              <p>Share your skills, offer a home-cooked meal for an island neighbor in need, or lend a hand with pantry distribution.</p>
+              <p>We match meal providers directly with families to coordinate pickup or delivery privately.</p>
             </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- Donations & Food Cards Section -->
-    <section id="donations">
-      <div class="container">
-        <h2 class="section-title">Donations & Grocery Food Cards</h2>
-        <p class="section-subtitle">LIMA is not a 501(c)3 non-profit; contributions are not tax-deductible. They are gifts shared in the spirit of community care.</p>
-
-        <div class="split-feature">
-          <div>
-            <h3 style="font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--primary); margin-bottom: 14px;">Grocery Food Cards</h3>
-            <p style="color: var(--text-muted); margin-bottom: 16px;">We match donor-funded food cards with island requests. Cards can be purchased from:</p>
-            <ul style="list-style-type: disc; margin-left: 20px; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">
-              <li><strong>The Islander Store:</strong> Donate via cash, check, or card at the checkout counter. Staff will credit the funds to dedicated LIMA recipient store accounts.</li>
-              <li><strong>Full Bloom Farm:</strong> Purchase gift certificates online with <code>lummiislandmutualaid@gmail.com</code> as recipient; we will route them directly to recipients to use at the kiosk stand.</li>
-              <li><strong>Off-Island Stores:</strong> Fred Meyer, Haggen, WinCo, Walmart, Community Food Co-op, Trader Joe's, or Costco.</li>
-              <li><strong>Digital Cards:</strong> Email e-cards to <code>lummiislandmutualaid@gmail.com</code> and we will confirm receipt and print them for distribution.</li>
-            </ul>
-          </div>
-
-          <!-- ========================================================
-               IMAGE SLOT 3: LOCAL PRODUCE / STORE / GIFTS
-               Replace 'images/donations.webp' with your card or produce photo.
-               ======================================================== -->
-          <div class="image-frame split-img-frame">
-            <img src="images/collage.webp" 
-                 alt="Fresh island produce and mutual aid donations" 
-                 >
-          </div>
-        </div>
-
-        <!-- Distribution Guidelines Table -->
+        <!-- Food Card Guidelines Table -->
         <h3 style="font-family: 'Playfair Display', serif; font-size: 1.45rem; color: var(--primary); margin: 48px 0 16px;">Standard Distribution & "Adopt a Family" Guidelines</h3>
         <div class="table-container">
           <table>
@@ -847,7 +839,7 @@
               <tr>
                 <th>Household Size</th>
                 <th>Standard Food Card Distribution</th>
-                <th>"Adopt a Family" (Monthly Sponsorship)</th>
+                <th>Monthly "Adopt a Family" Sponsorship</th>
               </tr>
             </thead>
             <tbody>
@@ -874,61 +866,87 @@
             </tbody>
           </table>
         </div>
-        <p style="font-size: 0.88rem; color: var(--text-muted); font-style: italic;">Note: Recipients needing additional assistance can submit requests up to 4 times per month.</p>
+        <p style="font-size: 0.88rem; color: var(--text-muted); font-style: italic;">Note: Recipients can submit up to 4 requests per month as needs arise.</p>
       </div>
     </section>
 
-    <!-- Additional Community Resources -->
-    <section id="resources" style="background: #ffffff; border-top: 1px solid var(--border-soft);">
+    <!-- Additional Community Resources Directory -->
+    <section id="resources">
       <div class="container">
-        <h2 class="section-title">Additional Island & Regional Resources</h2>
-        <p class="section-subtitle">Local support networks, healthcare assistance, and community food programs.</p>
+        <h2 class="section-title">Lummi Island & Regional Resources</h2>
+        <p class="section-subtitle">Local support networks, healthcare transit, and community food programs across Whatcom County.</p>
 
         <div class="resource-grid">
           <div class="resource-box">
-            <h4>Lummi Island Congregational Church</h4>
-            <p>Rides to appointments, medical equipment loans, emergency meals, and Islander vouchers via the Parish Health Ministry.</p>
-            <p class="resource-contact">📞 (360) 389-6697</p>
+            <div>
+              <span class="resource-category">Emergency & Care</span>
+              <h4>Lummi Island Congregational Church</h4>
+              <p>Appointment rides, medical equipment loans, emergency meals, and Parish Health Ministry Islander vouchers.</p>
+            </div>
+            <a href="tel:3603896697" class="resource-link">📞 (360) 389-6697</a>
           </div>
 
           <div class="resource-box">
-            <h4>The Gathering Place</h4>
-            <p><strong>Elderberries:</strong> Lunch Wednesdays at noon.<br>
-               <strong>Coffee with Friends:</strong> Fridays at 10:00 AM.</p>
+            <div>
+              <span class="resource-category">Social & Meals</span>
+              <h4>The Gathering Place</h4>
+              <p><strong>Elderberries:</strong> Lunch Wednesdays at 12:00 PM.<br><strong>Coffee with Friends:</strong> Fridays at 10:00 AM.</p>
+            </div>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">Island community room</span>
           </div>
 
           <div class="resource-box">
-            <h4>Meals on Wheels</h4>
-            <p>Serving healthy meals to local seniors. Bellingham office located at 315 Halleck St.</p>
-            <p class="resource-contact">📞 (360) 746-6480</p>
+            <div>
+              <span class="resource-category">Food Delivery</span>
+              <h4>Meals on Wheels</h4>
+              <p>Delivering nutritious meals to qualifying island seniors. Regional office at 315 Halleck St., Bellingham.</p>
+            </div>
+            <a href="tel:3607466480" class="resource-link">📞 (360) 746-6480</a>
           </div>
 
           <div class="resource-box">
-            <h4>Ferndale Food Bank</h4>
-            <p>Mobile food bank visits Lummi Island every other Friday, serving local seniors and island families.</p>
+            <div>
+              <span class="resource-category">Food Pantry</span>
+              <h4>Ferndale Food Bank</h4>
+              <p>Mobile delivery truck visits Lummi Island every other Friday, serving local seniors and island families.</p>
+            </div>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">Bi-weekly Friday route</span>
           </div>
 
           <div class="resource-box">
-            <h4>Island Chapel</h4>
-            <p>"See a need, fill a need." Emergency help, plus laundry and shower facilities available as needed.</p>
-            <p class="resource-contact">📞 Chris Immer: (360) 296-4963</p>
+            <div>
+              <span class="resource-category">Community Aid</span>
+              <h4>Island Chapel</h4>
+              <p>"See a need, fill a need." Emergency support, plus laundry and shower facilities available as needed.</p>
+            </div>
+            <a href="tel:3602964963" class="resource-link">📞 Chris Immer: (360) 296-4963</a>
           </div>
 
           <div class="resource-box">
-            <h4>Bellingham Food Bank (TEFAP)</h4>
-            <p>Self-declare income at or below 400% of the Federal Poverty Level. No ID, SSN, or proof of income required.</p>
-            <p class="resource-contact">📞 (360) 676-0392 | <a href="https://www.bellinghamfoodbank.org/" target="_blank" rel="noopener" style="color: var(--primary);">bellinghamfoodbank.org</a></p>
+            <div>
+              <span class="resource-category">Regional Food Assistance</span>
+              <h4>Bellingham Food Bank (TEFAP)</h4>
+              <p>Self-declare income at/below 400% Federal Poverty Level. No ID, SSN, or income verification required.</p>
+            </div>
+            <a href="tel:3606760392" class="resource-link">📞 (360) 676-0392</a>
           </div>
 
           <div class="resource-box">
-            <h4>Lummi Island Library</h4>
-            <p>WTA bus passes, Naloxone kits, free period products, and a hot tea & snack station. Open Tue, Thu, Fri (summer), and Sat.</p>
-            <p class="resource-contact">📞 (360) 758-7145</p>
+            <div>
+              <span class="resource-category">Community Hub</span>
+              <h4>Lummi Island Library</h4>
+              <p>Free WTA bus passes, Naloxone kits, hygiene products, hot tea, and snacks. Open Tue, Thu, Fri (summer), and Sat.</p>
+            </div>
+            <a href="tel:3607587145" class="resource-link">📞 (360) 758-7145</a>
           </div>
 
           <div class="resource-box">
-            <h4>Whatcom Asset Building Coalition</h4>
-            <p>Up-to-date county-wide resources for emergency meals, showers, ID cards, and support meetings.</p>
+            <div>
+              <span class="resource-category">County Directory</span>
+              <h4>Whatcom Asset Building Coalition</h4>
+              <p>Up-to-date resources for emergency shelter, showers, medical clinics, and identification cards across Whatcom County.</p>
+            </div>
+            <a href="https://whatcomabc.org" target="_blank" rel="noopener" class="resource-link">🌐 Visit whatcomabc.org &rarr;</a>
           </div>
         </div>
       </div>
@@ -940,24 +958,24 @@
     <div class="container footer-grid">
       <div class="footer-col">
         <h4>Lummi Island Mutual Aid</h4>
-        <p>A grassroots community initiative built on the honor system, mutual aid, and care for our neighbors across Lummi Island, WA.</p>
+        <p>A grassroots mutual aid initiative built on the honor system and neighborly care across Lummi Island, WA.</p>
       </div>
 
       <div class="footer-col">
         <h4>Pantry Location</h4>
-        <p>2141 Granger Way<br>Lummi Island, WA 98262<br>Daily: 7:00 AM – 8:30 PM</p>
+        <p>2141 Granger Way<br>Lummi Island, WA 98262<br>Monday – Sunday: 7:00 AM – 8:30 PM</p>
       </div>
 
       <div class="footer-col">
-        <h4>Contact & Connect</h4>
+        <h4>Contact & Privacy</h4>
         <p>Email: <a href="mailto:lummiislandmutualaid@gmail.com">lummiislandmutualaid@gmail.com</a></p>
-        <p style="margin-top: 10px;">Find us on NextDoor for weekly updates and urgent needs.</p>
+        <p style="margin-top: 10px; font-size: 0.85rem;"><em>We never publish names or contact info online.</em></p>
       </div>
     </div>
 
     <div class="footer-bottom">
       <div class="container">
-        &copy; Lummi Island Mutual Aid (LIMA). Made for the Lummi community.
+        &copy; Lummi Island Mutual Aid (LIMA). Strengthened by community.
       </div>
     </div>
   </footer>
