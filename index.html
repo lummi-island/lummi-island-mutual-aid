@@ -244,7 +244,146 @@
       margin: 0 auto 40px;
       font-size: 1.05rem;
     }
+/* Weekly Wishlist Widget */
+.wishlist-widget {
+  background: #ffffff;
+  border: 1.5px solid var(--border-soft);
+  border-radius: var(--radius);
+  padding: 32px;
+  box-shadow: var(--shadow);
+  margin-top: 36px;
+}
 
+.wishlist-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.wishlist-tag {
+  display: inline-block;
+  background: #fdf0e9;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin-bottom: 6px;
+}
+
+.wishlist-header h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: var(--primary);
+}
+
+.wishlist-date {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  background: var(--bg-cream);
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border-soft);
+}
+
+.wishlist-intro {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.wishlist-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.wishlist-col {
+  background: var(--bg-cream);
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid var(--border-soft);
+}
+
+.wishlist-col h4 {
+  font-size: 1rem;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.urgent-dot { background: var(--accent); }
+.routine-dot { background: var(--primary); }
+
+.wishlist-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.wishlist-col ul li {
+  font-size: 0.92rem;
+  color: var(--text-main);
+  padding: 6px 0;
+  border-bottom: 1px dashed #e1e7e2;
+  display: flex;
+  align-items: center;
+}
+
+.wishlist-col ul li:last-child {
+  border-bottom: none;
+}
+
+.wishlist-col ul li::before {
+  content: "•";
+  color: var(--primary-light);
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-right: 8px;
+}
+
+.wishlist-footer {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-soft);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.wishlist-link {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.wishlist-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 680px) {
+  .wishlist-grid {
+    grid-template-columns: 1fr;
+  }
+}
     /* Pantry Showcase Section */
     .pantry-card {
       background: var(--card-bg);
@@ -505,12 +644,17 @@
   <!-- Site Navigation -->
   <header class="site-header">
     <div class="container nav-wrapper">
-      <a href="#" class="logo-group">
-        <div class="logo-text">
-          <h1>Lummi Island Mutual Aid</h1>
-          <p>LIMA Community Resource</p>
-        </div>
-      </a>
+      <!-- Site Logo & Title -->
+<a href="#" class="logo-group">
+  <img src="images/logo.webp" 
+       alt="Lummi Island Mutual Aid Logo" 
+       class="site-logo" 
+       onerror="this.style.display='none';">
+  <div class="logo-text">
+    <h1>Lummi Island Mutual Aid</h1>
+    <p>LIMA Community Resource</p>
+  </div>
+</a>
       <nav class="nav-links" aria-label="Primary Navigation">
         <a href="#pantry">The Pantry</a>
         <a href="#how-it-works">How It Works</a>
@@ -582,6 +726,51 @@
             <div>
               <a href="mailto:lummiislandmutualaid@gmail.com?subject=Volunteer%20at%20Pantry" class="btn btn-secondary" style="font-size: 0.9rem;">Volunteer at the Pantry</a>
             </div>
+            <!-- Weekly Wishlist Widget -->
+<div class="wishlist-widget">
+  <div class="wishlist-header">
+    <div>
+      <span class="wishlist-tag">Current Needs</span>
+      <h3>Pantry Weekly Wishlist</h3>
+    </div>
+    <span class="wishlist-date">Updated: October 2026</span>
+  </div>
+
+  <p class="wishlist-intro">
+    Help keep our shelves stocked! Drop donations directly at <strong>2141 Granger Way</strong> (open 7:00 AM – 8:30 PM daily).
+  </p>
+
+  <div class="wishlist-grid">
+    <!-- Urgent Items -->
+    <div class="wishlist-col urgent">
+      <h4><span class="dot urgent-dot"></span> High Need Right Now</h4>
+      <ul>
+        <li>Canned proteins (tuna, chicken, salmon)</li>
+        <li>Hearty soups, stews & chili</li>
+        <li>Peanut butter & fruit preserves</li>
+        <li>Cooking oil, olive oil & condiments</li>
+        <li>Menstrual & personal hygiene products</li>
+      </ul>
+    </div>
+
+    <!-- Always Needed Items -->
+    <div class="wishlist-col routine">
+      <h4><span class="dot routine-dot"></span> Always Welcome</h4>
+      <ul>
+        <li>Rolled oats & hot breakfast cereals</li>
+        <li>Pasta, brown & white rice, quinoa</li>
+        <li>Canned black, pinto & garbanzo beans</li>
+        <li>Toothpaste, toothbrushes & soap bars</li>
+        <li>Laundry pods & dish detergent</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="wishlist-footer">
+    <span>💡 <em>No dairy, refrigerated, or expired goods please.</em></span>
+    <a href="mailto:lummiislandmutualaid@gmail.com?subject=Pantry%20Donation%20Inquiry" class="wishlist-link">Arrange larger drop-off &rarr;</a>
+  </div>
+</div>
           </div>
         </div>
       </div>
