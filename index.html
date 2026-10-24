@@ -5,11 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lummi Island Mutual Aid (LIMA)</title>
   <meta name="description" content="Fostering cooperation and strengthening our island spirit through neighbor-to-neighbor mutual aid, food sharing, and community pantry support on Lummi Island.">
-  <!-- Favicon -->
-<link rel="icon" type="image/png" href="images/favicon.webp">
+  
+  <!-- Favicon (Replace images/favicon.png with your file, or keep the SVG emoji) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
   <style>
     :root {
       --primary: #234734;          /* PNW Deep Cedar */
@@ -78,17 +81,18 @@
       border-bottom: 1px solid var(--border-soft);
       position: sticky;
       top: 0;
-      z-index: 50;
+      z-index: 100;
     }
 
     .nav-wrapper {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 0;
+      padding: 14px 0;
+      position: relative;
+      flex-wrap: wrap;
     }
 
-    /* Logo Slot */
     .logo-group {
       display: flex;
       align-items: center;
@@ -98,9 +102,9 @@
     }
 
     .site-logo {
-      height: 48px;
+      height: 46px;
       width: auto;
-      max-width: 120px;
+      max-width: 110px;
       object-fit: contain;
       display: block;
     }
@@ -113,12 +117,30 @@
     }
 
     .logo-text p {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
 
+    /* Mobile Toggle Button */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: 1px solid var(--border-soft);
+      border-radius: 8px;
+      padding: 8px 12px;
+      cursor: pointer;
+      color: var(--primary);
+      font-size: 1.3rem;
+      line-height: 1;
+    }
+
+    .nav-toggle:hover {
+      background: var(--bg-cream);
+    }
+
+    /* Navigation Links - Desktop Default */
     nav.nav-links {
       display: flex;
       gap: 18px;
@@ -131,6 +153,7 @@
       font-weight: 500;
       font-size: 0.92rem;
       transition: color 0.2s;
+      padding: 6px 4px;
     }
 
     nav.nav-links a:hover {
@@ -138,11 +161,13 @@
     }
 
     .btn-nav {
-      background: var(--primary);
+      background: var(--primary) !important;
       color: #fff !important;
-      padding: 8px 16px;
+      padding: 8px 18px !important;
       border-radius: 6px;
       font-weight: 600;
+      display: inline-block;
+      text-align: center;
     }
 
     .btn-nav:hover {
@@ -186,7 +211,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 13px 26px;
+      padding: 13px 24px;
       border-radius: 8px;
       font-weight: 600;
       text-decoration: none;
@@ -224,7 +249,7 @@
       line-height: 1.55;
     }
 
-    /* Visual Media Frames */
+    /* Image Frames */
     .image-frame {
       border-radius: var(--radius);
       overflow: hidden;
@@ -243,7 +268,7 @@
       height: 380px;
     }
 
-    /* Section Styling */
+    /* Sections */
     section {
       padding: 56px 0;
     }
@@ -625,20 +650,65 @@
       color: #b0c4b8;
     }
 
-    /* Responsive */
-    @media (max-width: 820px) {
+    /* ========================================================
+       RESPONSIVE RULES (< 860px)
+       ======================================================== */
+    @media (max-width: 860px) {
+      .nav-toggle {
+        display: block; /* Shows the hamburger button */
+      }
+
+      nav.nav-links {
+        display: none; /* Collapsed by default on mobile */
+        flex-direction: column;
+        width: 100%;
+        background: #ffffff;
+        border-top: 1px solid var(--border-soft);
+        padding: 16px 0 10px;
+        margin-top: 12px;
+        gap: 8px;
+        align-items: stretch;
+      }
+
+      nav.nav-links.is-open {
+        display: flex; /* Expands when hamburger is clicked */
+      }
+
+      nav.nav-links a {
+        padding: 10px 12px;
+        border-radius: 6px;
+        font-size: 0.98rem;
+      }
+
+      nav.nav-links a:hover {
+        background: var(--bg-cream);
+      }
+
+      .btn-nav {
+        margin-top: 6px;
+        width: 100%;
+      }
+
+      .logo-text h1 {
+        font-size: 1.15rem;
+      }
+
+      .logo-text p {
+        font-size: 0.72rem;
+      }
+
       .hero-grid, .pantry-card, .wishlist-grid, .footer-grid {
         grid-template-columns: 1fr;
       }
-      .nav-links {
-        display: none;
-      }
+
       .hero-content h2 {
         font-size: 2.2rem;
       }
+
       .hero-image-frame {
         height: 250px;
       }
+
       .pantry-img-container {
         height: 240px;
         min-height: auto;
@@ -656,13 +726,10 @@
     </div>
   </aside>
 
-  <!-- Navigation Bar with Logo -->
+  <!-- Navigation Bar with Logo & Responsive Hamburger -->
   <header class="site-header">
     <div class="container nav-wrapper">
       <a href="#" class="logo-group">
-        <!-- ========================================================
-             SLOT 0: LOGO (images/logo.webp or images/logo.png)
-             ======================================================== -->
         <img src="images/logo.webp" 
              alt="Lummi Island Mutual Aid Logo" 
              class="site-logo" 
@@ -672,7 +739,14 @@
           <p>LIMA Community Resource</p>
         </div>
       </a>
-      <nav class="nav-links" aria-label="Main Navigation">
+
+      <!-- Mobile Hamburger Button -->
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        ☰
+      </button>
+
+      <!-- Navigation Menu -->
+      <nav class="nav-links" id="mobile-nav" aria-label="Main Navigation">
         <a href="#pantry">The Pantry</a>
         <a href="#wishlist">Needs List</a>
         <a href="#give">Ways to Give</a>
@@ -690,7 +764,6 @@
           <h2>Join Our Community in Making a Difference</h2>
           <p>LIMA fosters cooperation and strengthens our island spirit. Everyone's contribution—big or small—helps keep our Lummi community fed, supported, and resilient.</p>
 
-          <!-- High-Contrast Action Split -->
           <div class="hero-actions">
             <a href="mailto:lummiislandmutualaid@gmail.com?subject=LIMA%20Aid%20Request&body=Hello%20LIMA,%0A%0AI%20would%20like%20to%20request%20assistance%20with:%0A-%20Grocery%20Food%20Card%20(Family%20Size:%20)%0A-%20Pantry%20Goods%0A-%20Home-cooked%20Meal%0A%0ABest%20way%20to%20contact%20me%20privately:%0A" class="btn btn-primary">
               🥫 Request Food or Aid
@@ -705,11 +778,8 @@
           </div>
         </div>
 
-        <!-- ========================================================
-             SLOT 1: HERO IMAGE (images/hero.webp)
-             ======================================================== -->
         <div class="image-frame hero-image-frame">
-          <img src="images/love.webp" 
+          <img src="images/hero.webp" 
                alt="Scenic Lummi Island community view" 
                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=1000&q=80';">
         </div>
@@ -720,9 +790,6 @@
     <section id="pantry">
       <div class="container">
         <div class="pantry-card">
-          <!-- ========================================================
-               SLOT 2: PANTRY INTERIOR OR BUILDING (images/pantry.webp)
-               ======================================================== -->
           <div class="pantry-img-container">
             <img src="images/pantry.webp" 
                  alt="Inside the LIMA Community Pantry shelves on Granger Way" 
@@ -762,7 +829,6 @@
           </p>
 
           <div class="wishlist-grid">
-            <!-- High Need Items -->
             <div class="wishlist-col">
               <h4><span class="bullet-dot bullet-urgent"></span> High Need Right Now</h4>
               <ul>
@@ -774,7 +840,6 @@
               </ul>
             </div>
 
-            <!-- Always Welcome Items -->
             <div class="wishlist-col">
               <h4><span class="bullet-dot bullet-routine"></span> Always Welcome</h4>
               <ul>
@@ -795,34 +860,31 @@
       </div>
     </section>
 
-    <!-- Ways to Give (Structured Cards) -->
+    <!-- Ways to Give -->
     <section id="give" style="background: #ffffff; border-top: 1px solid var(--border-soft); border-bottom: 1px solid var(--border-soft);">
       <div class="container">
         <h2 class="section-title">Ways to Give & Share</h2>
         <p class="section-subtitle">LIMA operates as an informal mutual aid collective and gift economy. We are not a 501(c)3 non-profit; donations are voluntary gifts of community care.</p>
 
         <div class="give-grid">
-          <!-- Card 1 -->
           <div class="give-card">
             <div>
               <span class="give-icon">🏪</span>
               <h3>On-Island Accounts</h3>
               <p><strong>The Islander Store:</strong> Donate cash, check, or card at checkout. Mention it is for <em>LIMA food card recipients</em> to credit store accounts.</p>
-              <p><strong>Full Bloom Farm:</strong> Order gift certificates online with <a href="mailto:lummiislandmutualaid@gmail.com">Lummi Island Mutual Aid</a> as recipient; we route vouchers to families for farm stand kiosk use.</p>
+              <p><strong>Full Bloom Farm:</strong> Order gift certificates online with <code>lummiislandmutualaid@gmail.com</code> as recipient; we route vouchers to families for farm stand kiosk use.</p>
             </div>
           </div>
 
-          <!-- Card 2 -->
           <div class="give-card">
             <div>
               <span class="give-icon">💳</span>
               <h3>Grocery Cards</h3>
               <p>Donate physical or digital grocery cards from Fred Meyer, Haggen, WinCo, Walmart, Community Food Co-op, Trader Joe's, or Costco.</p>
-              <p>Send digital cards to <a href="mailto:lummiislandmutualaid@gmail.com">lummiislandmutualaid@gmail.com</a> or email us to arrange physical pickup.</p>
+              <p>Send digital cards to <code>lummiislandmutualaid@gmail.com</code> or email us to arrange physical pickup.</p>
             </div>
           </div>
 
-          <!-- Card 3 -->
           <div class="give-card">
             <div>
               <span class="give-icon">🍲</span>
@@ -833,7 +895,6 @@
           </div>
         </div>
 
-        <!-- Food Card Guidelines Table -->
         <h3 style="font-family: 'Playfair Display', serif; font-size: 1.45rem; color: var(--primary); margin: 48px 0 16px;">Standard Distribution & "Adopt a Family" Guidelines</h3>
         <div class="table-container">
           <table>
@@ -982,5 +1043,24 @@
     </div>
   </footer>
 
+  <!-- Mobile Menu Script -->
+  <script>
+    const navToggle = document.getElementById('nav-toggle');
+    const mobileNav = document.getElementById('mobile-nav');
+
+    navToggle.addEventListener('click', () => {
+      const isOpen = mobileNav.classList.toggle('is-open');
+      navToggle.setAttribute('aria-expanded', isOpen);
+      navToggle.textContent = isOpen ? '✕' : '☰';
+    });
+
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNav.classList.remove('is-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.textContent = '☰';
+      });
+    });
+  </script>
 </body>
 </html>
